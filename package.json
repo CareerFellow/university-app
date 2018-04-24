@@ -1,0 +1,29 @@
+{
+  "name": "university-app",
+  "version": "1.0.0",
+  "description": "A small app to guide students for admissions.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon ./server/bin/dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aimenbatool/university-app.git"
+  },
+  "author": "@AimenBatool",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aimenbatool/university-app/issues"
+  },
+  "homepage": "https://github.com/aimenbatool/university-app#readme",
+  "dependencies": {
+    "babel-register": "^6.26.0",
+    "express": "^4.16.3",
+    "nodemon": "^1.17.3"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1"
+  }
+}
