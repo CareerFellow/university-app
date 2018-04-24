@@ -19,11 +19,15 @@
   "homepage": "https://github.com/aimenbatool/university-app#readme",
   "dependencies": {
     "babel-register": "^6.26.0",
+    "body-parser": "^1.18.2",
     "express": "^4.16.3",
+    "express-promise-router": "^3.0.2",
+    "mongoose": "^5.0.16",
     "nodemon": "^1.17.3"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
+    "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.6.1"
   }
 }

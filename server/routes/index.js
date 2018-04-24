@@ -1,13 +1,12 @@
 import express from "express";
-const router = express();
+var router = require('express-promise-router')();
 
 import universities from "./../controllers/universitiesController";
-
 
 router.route('/')
   .get(universities.index);
 
-router.route('/university/')
+router.route('/university')
   .post(universities.addUniversity)
   .get(universities.getUniversity)
   .put(universities.replaceUniversity)
