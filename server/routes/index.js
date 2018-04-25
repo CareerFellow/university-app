@@ -8,8 +8,12 @@ router.route('/')
 
 router.route('/university')
   .post(universities.addUniversity)
-  .get(universities.getUniversity)
+  .get(universities.getUniversities)
+
+router.route('/university/:universityId')  
   .put(universities.replaceUniversity)
   .patch(universities.updateUniversity)
+  .get(universities.getUniveristyById)
+  .delete(universities.deleteUniversity)
 
 export default router;
