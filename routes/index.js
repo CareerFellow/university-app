@@ -7,8 +7,11 @@ router.route('/')
   .get(universities.index);
 
 router.route('/university')
-  .post(universities.addUniversity)
+  .post(universities.storeUniversity)
   .get(universities.getUniversities)
+
+router.route('/university/add')  
+  .get(universities.addUniversity);
 
 router.route('/university/:universityId')  
   .put(universities.replaceUniversity)

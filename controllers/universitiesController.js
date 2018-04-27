@@ -1,18 +1,29 @@
 import University from "./../models/university";
+import flash from 'connect-flash';
 const universities = {};
 
 universities.index = async (req, res) => {
-  res.status(200).json({
-    message : "Welcome to home page."
-  })
+  res.render('home');
 }
 
 universities.addUniversity = async (req, res) => {
+  res.render('addUniversity');
+}
+
+universities.storeUniversity = async (req, res) => {
+
+  console.log('reqbody : ' , req.body);
   const newUniversity = new University(req.body);
-  const university = await newUniversity.save();  
-  return res.status(200).json({
-    message : "University added successfully."
-  })
+    try {
+      const university = await newUniversity.save(); 
+      console.log('men naihun')   
+      req.flash('success' , 'User is successfully added.')
+
+    }catch(error){
+        req.flash('error' , 'User is failed to add.')
+        console.log('men error hun');
+    }
+      res.redirect('/university/add');
 }
 
 universities.getUniversities = async (req , res) => {
