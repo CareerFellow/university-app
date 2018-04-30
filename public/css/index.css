@@ -22,3 +22,17 @@ body {
 .form-wrapper {
   margin-top: 20px;
 }
+
+.font-edit-icon {
+  color : green;
+  padding: 10px
+}
+
+.font-del-icon {
+  color: red;
+  padding: 10px;
+}
+
+h2 {
+  font-size: 1.5rem;
+}

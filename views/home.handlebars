@@ -1,46 +1,6 @@
-<div class="table-wrapper">
-  <div class="table-title">
-    <div class="row">
-      <div class="col">
-        <h2>Manage Universities</h2>
-      </div>
-      <div class="col">
-        <a href="university/add" class="btn btn-success"> Add New University</a>
-        <a href="" class="btn btn-danger">Delete</a>
-      </div>
-    </div>
+<div class="container">
+  <div class="table-wrapper">
+    <h2>Welcome to University App. Please, go <a class="btn" href="/university">here</a> </h2>
+    <h6> <i>App is under development</i></h6>
   </div>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>#</th>
-        <th>Name</th>
-        <th>Address</th>
-        <th>City</th>
-        <th>Country</th>
-        <th>Contact</th>
-      </tr>
-    </thead>
-    <tbody>
-      {{#each allUniversities}}
-      <tr>
-        <td> {{inc @index}}</td>
-        <td>{{this.universityName}}</td>
-        <td>{{this.address}}</td>
-        <td>{{this.city}}</td>
-        <td>{{this.country}}</td>
-        <td>{{this.contact}}</td>
-      </tr>
-      {{/each}}
-       <tr>
-        <th>#</th>
-        <th>Name</th>
-        <th>Address</th>
-        <th>City</th>
-        <th>Country</th>
-        <th>Contact</th>
-      </tr>
-    </tbody>
-  </table>
 </div>
-

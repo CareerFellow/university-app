@@ -2,24 +2,25 @@ import express from "express";
 var router = require('express-promise-router')();
 
 import universities from "./../controllers/universitiesController";
-// import { schemas , validateParams , validateBody} from './../helpers/routeHelpers';
 import { schemas , validateBody , validateParams } from '../helpers/routeHelpers';
 
 router.route('/')
   .get(universities.index);
 
 router.route('/university')
-
-  .post( validateBody(schemas.addUniversity) , universities.storeUniversity)
+  .post( validateBody(schemas.validateUniversity) , universities.storeUniversity)
   .get( universities.getUniversities)
 
 router.route('/university/add')  
   .get(universities.addUniversity);
+  
+router.route('/university/update/:universityId')  
+  .get(universities.showUniversity)
+  .post(validateBody(schemas.validateUniversity) , universities.updateUniversity);
 
-router.route('/university/:universityId')  
-  .put(universities.replaceUniversity)
-  .patch(universities.updateUniversity)
-  .get(universities.getUniveristyById)
-  .delete(universities.deleteUniversity)
+router.route('/university/delete/:universityId')  
+  // .put(universities.replaceUniversity)
+  // .get(universities.getUniveristyById)
+  .get(universities.deleteUniversity)
 
 export default router;

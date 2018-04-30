@@ -1,0 +1,45 @@
+<div class="table-wrapper col-lg-6 center">
+  <div class="table-title">
+    <div class="row">
+      <div class="col">
+        <h2>Update University</h2>
+      </div>
+      <div class="col">
+        <a href="/university/" class="btn btn-success"> View All</a>
+      </div>
+    </div>
+  </div>
+  <div class="form-wrapper">
+    
+    {{#if success_message }}
+      <div class="alert alert-success">{{success_message}}</div>
+    {{/if}}
+    {{#if error_message}}
+      <div class="alert alert-danger">{{error_message}}</div>
+    {{/if}}
+
+    <form action="/university/update/{{universityData.id}}" method="POST">
+    <div class="form-group">
+      <label for="universityName"> University Name</label>
+      <input type="text" name="universityName" value="{{universityData.universityName}}" class="form-control" id="universityName">
+    </div>
+    <div class="form-group">
+      <label for="address">Address</label>
+      <input type="text" name="address" value="{{universityData.address}}" class="form-control" id="address">
+    </div>
+    <div class="form-group">
+      <label for="city">City</label>
+      <input type="text" name="city" value="{{universityData.city}}" class="form-control" id="city">
+    </div>
+    <div class="form-group">
+      <label for="country">Country</label>
+      <input type="text" name="country" value="{{universityData.country}}" class="form-control" id="country">
+    </div>
+    <div class="form-group">
+      <label for="contact">Contact</label>
+      <input type="text" name="contact" value="{{universityData.contact}}" class="form-control" id="contact">
+    </div>
+    <button type="submit" class="btn btn-primary"> Update </button>
+  </form>
+  </div>
+</div>

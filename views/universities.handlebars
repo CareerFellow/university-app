@@ -1,0 +1,57 @@
+<div class="table-wrapper">
+  <div class="table-title">
+    <div class="row">
+      <div class="col">
+        <h2>Manage Universities</h2>
+      </div>
+      <div class="col">
+        <a href="/university/add" class="btn btn-success"> Add New University</a>
+      </div>
+    </div>
+  </div>
+  <table class="table">
+     {{#if success_message }}
+      <div class="alert alert-success">{{success_message}}</div>
+    {{/if}}
+    {{#if error_message}}
+      <div class="alert alert-danger">{{error_message}}</div>
+    {{/if}}
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Address</th>
+        <th>City</th>
+        <th>Country</th>
+        <th>Contact</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each allUniversities}}
+      <tr>
+        <td> {{inc @index}}</td>
+        <td>{{this.universityName}}</td>
+        <td>{{this.address}}</td>
+        <td>{{this.city}}</td>
+        <td>{{this.country}}</td>
+        <td>{{this.contact}}</td>
+        <td>
+          <a href="university/update/{{this.id}}"><span class="font-edit-icon"><i class="fas fa-pencil-alt"></i></span> </a>
+          <a href="university/delete/{{this.id}}"><span class="font-del-icon"><i class="fas fa-trash-alt"></i></span> </a>
+        </td>
+      </tr>
+      {{/each}}
+       <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Address</th>
+        <th>City</th>
+        <th>Country</th>
+        <th>Contact</th>
+        <th>Actions</th>
+      </tr>
+    </tbody>
+  </table>
+</div>
+

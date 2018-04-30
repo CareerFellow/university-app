@@ -25,50 +25,46 @@ universities.storeUniversity = async (req, res) => {
 universities.getUniversities = async (req , res) => {
   try{
     const universities = await University.find({});
-    res.render('home' , {allUniversities : universities});
+    res.render('universities' , {allUniversities : universities});
   }catch(error){
     req.flash('error', error.message);
     res.redirect('/');
   }
 }
 
+universities.showUniversity = async (req, res) => {
+    let { universityId } = req.params;
+    let university = await University.findById(universityId);
+    if ( !university ) {
+      req.flash('error', 'No record found against the given id.')
+      return res.redirect('/university');
+    }
+    res.render('updateUniversity' , {universityData : university}); 
+}
+
 universities.updateUniversity = async (req, res) =>{
   let { universityId } = req.params;
   let isUpdated = await University.findByIdAndUpdate(universityId , req.body);
-  res.status(200).json({
-    success : true,
-  })
-}
-
-universities.replaceUniversity = async (req, res) => {
-  let { universityId } = req.params;
-  let isReplaced = await University.findByIdAndUpdate(universityId , req.body);
-  res.status(200).json({
-    success : true
-  })
-}
-
-universities.getUniveristyById = async (req, res) => {
-  let { universityId } = req.params;
-  let university = await University.findById(universityId);
-  if ( !university ) {
-    return res.status(404).json({
-      message : "No record found agains the given ID."
-    })
+  if ( !isUpdated ) {
+    req.flash('error', 'Couldnt update successfully.');
+    res.redirect('/university/');
   }
-  res.status(200).json({
-    success : true,
-    data : university
-  })
+  req.flash('success' , 'Successfully updated.');
+  res.redirect('/university');
 }
+
 
 universities.deleteUniversity = async (req, res ) => {
   let { universityId } = req.params;
   let isDeleted = await University.findByIdAndRemove(universityId);
-  res.status(200).json({
-    success : true
-  })
+  if ( !isDeleted ) {
+    req.flash('error' , 'Couldnt delete record.');
+    res.redirect('/university');
+  }
+    req.flash('success' , 'Record is successfully deleted.');
+    res.redirect('/university');
 }
+
 
 
 export default universities;

@@ -18,10 +18,11 @@ module.exports = {
     return (req, res, next) => {
     try{
     const result = Joi.validate(req.body, schema);
+    let url = req.header('Referer') || '/';
       if(result.error) {
         console.log(result)
         req.flash('error' , result.error.message);
-        res.redirect('/university/add');
+        res.redirect(url);
         return;
       }
     next();
@@ -32,28 +33,12 @@ module.exports = {
   },
 
   schemas : {
-    addUniversity : Joi.object().keys({
+    validateUniversity : Joi.object().keys({
       universityName : Joi.string().required().error(new Error('University name is required.')),
       address : Joi.string().required().error(new Error('Address is required.')),
       city : Joi.string().required().error(new Error('City is required.')),
       country : Joi.string().required().error(new Error('Country is required.')),
-      contact : Joi.string().required().error(new Error('Contact number is required.'))
-    }),
-
-    updateUniversity : Joi.object().keys({
-      universityName : Joi.string(),
-      address : Joi.string(),
-      city : Joi.string(),
-      country : Joi.string(),
-      contact : Joi.string()
-    }),
-
-    replaceUniversity : Joi.object().keys({
-      universityName : Joi.string().required(),
-      address : Joi.string().required(),
-      city : Joi.string().required(),
-      country : Joi.string().required(),
-      contact : Joi.string().required()
+      contact : Joi.string().required().error(new Error('Contact  is required.'))
     }),
 
     paramsSchema : Joi.object().keys({
