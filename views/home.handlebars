@@ -22,46 +22,25 @@
       </tr>
     </thead>
     <tbody>
+      {{#each allUniversities}}
       <tr>
-        <td>1</td>
-        <td>LHR Leads Uni</td>
-        <td>Kamaha Rd</td>
-        <td>Lahore</td>
-        <td>Pakistan</td>
-        <td>0333 3333989</td>
+        <td> {{inc @index}}</td>
+        <td>{{this.universityName}}</td>
+        <td>{{this.address}}</td>
+        <td>{{this.city}}</td>
+        <td>{{this.country}}</td>
+        <td>{{this.contact}}</td>
       </tr>
-            <tr>
-        <td>2</td>
-        <td>LHR Leads Uni</td>
-        <td>Kamaha Rd</td>
-        <td>Lahore</td>
-        <td>Pakistan</td>
-        <td>0333 3333989</td>
-      </tr>
-            <tr>
-        <td>3</td>
-        <td>LHR Leads Uni</td>
-        <td>Kamaha Rd</td>
-        <td>Lahore</td>
-        <td>Pakistan</td>
-        <td>0333 3333989</td>
-      </tr>
-            <tr>
-        <td>4</td>
-        <td>LHR Leads Uni</td>
-        <td>Kamaha Rd</td>
-        <td>Lahore</td>
-        <td>Pakistan</td>
-        <td>0333 3333989</td>
-      </tr>
-            <tr>
-        <td>5</td>
-        <td>LHR Leads Uni</td>
-        <td>Kamaha Rd</td>
-        <td>Lahore</td>
-        <td>Pakistan</td>
-        <td>0333 3333989</td>
+      {{/each}}
+       <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Address</th>
+        <th>City</th>
+        <th>Country</th>
+        <th>Contact</th>
       </tr>
     </tbody>
   </table>
 </div>
+

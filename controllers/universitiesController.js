@@ -11,27 +11,25 @@ universities.addUniversity = async (req, res) => {
 }
 
 universities.storeUniversity = async (req, res) => {
-
-  console.log('reqbody : ' , req.body);
   const newUniversity = new University(req.body);
     try {
-      const university = await newUniversity.save(); 
-      console.log('men naihun')   
+      const university = await newUniversity.save();  
       req.flash('success' , 'User is successfully added.')
 
     }catch(error){
-        req.flash('error' , 'User is failed to add.')
-        console.log('men error hun');
+        req.flash('error' , error.message)
     }
       res.redirect('/university/add');
 }
 
 universities.getUniversities = async (req , res) => {
-  const universities = await University.find({});
-  res.status(200).json({
-    success : true,
-    data  : universities
-  })
+  try{
+    const universities = await University.find({});
+    res.render('home' , {allUniversities : universities});
+  }catch(error){
+    req.flash('error', error.message);
+    res.redirect('/');
+  }
 }
 
 universities.updateUniversity = async (req, res) =>{

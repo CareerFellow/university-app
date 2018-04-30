@@ -4,14 +4,23 @@ import exphbs from 'express-handlebars';
 import flash from 'connect-flash';
 import cookieParser from 'cookie-parser';
 import session from 'express-session';
+import Handlebars from 'handlebars';
+
 const app = express();
 
 import bodyParser from "body-parser";
 import mongoose from 'mongoose';
 import route from "./routes/";
+
 const Promise = global.Promise;
 
 mongoose.connect("mongodb://localhost/university-app");
+
+// Helper function to increment index value for foreach loop.
+Handlebars.registerHelper("inc", function(value, options)
+{
+    return parseInt(value) + 1;
+});
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended : false}))
