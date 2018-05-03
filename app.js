@@ -37,11 +37,11 @@ app.use(flash());
 app.use((req, res, next) => {
   res.locals.success_message = req.flash('success');
   res.locals.error_message = req.flash('error');
+  res.locals.detailed_message = req.flash('detailed_msg')
   next();
 });
 
 app.use("/" , route)
-
 
 app.engine('handlebars' , exphbs({defaultLayout : 'main.handlebars'}));
 app.set('views', path.join(__dirname, 'views'));

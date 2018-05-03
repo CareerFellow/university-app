@@ -20,8 +20,7 @@ module.exports = {
     const result = Joi.validate(req.body, schema);
     let url = req.header('Referer') || '/';
       if(result.error) {
-        console.log(result)
-        req.flash('error' , result.error.message);
+        req.flash('detailed_msg' , result.value)
         res.redirect(url);
         return;
       }
@@ -33,7 +32,7 @@ module.exports = {
   },
 
   schemas : {
-    validateUniversity : Joi.object().keys({
+    validateUniversity : Joi.object().options({ abortEarly : false }).keys({
       universityName : Joi.string().required().error(new Error('University name is required.')),
       address : Joi.string().required().error(new Error('Address is required.')),
       city : Joi.string().required().error(new Error('City is required.')),

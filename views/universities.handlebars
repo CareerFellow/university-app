@@ -51,7 +51,29 @@
         <th>Contact</th>
         <th>Actions</th>
       </tr>
-    </tbody>
+    </tbody>   
   </table>
 </div>
 
+{{!-- 
+{{#ifCond paginate.hasPreviousPages '||' paginate.hasNextPages( {{{pageCount}}} )}}
+  <ul>
+    {{#if paginate.hasPreviousPages}}
+    <li class="previous">
+      <a href="{{paginate.href(true).prev}}"> previous </a>
+    </li>
+    {{#/if}}
+    {{#if pages}}
+      {{#each pages}}
+        <a href="{{page.url}}"> {{page.number}} </a>
+      {{/each}}
+    {{#/if}}  
+    {{#if paginate.hasNextPages(pageCount)}}
+      <li class="next">
+        <a href="{{paginate.href().next}}">
+          next
+        </a>
+      </li>
+    {{#/if}}
+  </ul>
+{{#/if}} --}}

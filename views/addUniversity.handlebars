@@ -11,6 +11,8 @@
   </div>
   <div class="form-wrapper">
     
+    
+
     {{#if success_message }}
       <div class="alert alert-success">{{success_message}}</div>
     {{/if}}
@@ -18,27 +20,60 @@
       <div class="alert alert-danger">{{error_message}}</div>
     {{/if}}
 
+
+
     <form action="/university" method="POST">
+    
     <div class="form-group">
       <label for="universityName"> University Name</label>
+        {{#each detailed_message }}
+          {{#unless universityName}}
+            <span class="red">  is required. </span>
+          {{/unless}}
+        {{/each}}
       <input type="text" name="universityName" class="form-control" id="universityName">
     </div>
+
     <div class="form-group">
       <label for="address">Address</label>
+       {{#each detailed_message }}
+          {{#unless address}}
+            <span class="red">  is required. </span>
+          {{/unless}}
+        {{/each}}
       <input type="text" name="address" class="form-control" id="address">
     </div>
+    
     <div class="form-group">
       <label for="city">City</label>
+        {{#each detailed_message }}
+          {{#unless city}}
+            <span class="red">  is required. </span>
+          {{/unless}}
+        {{/each}}
       <input type="text" name="city" class="form-control" id="city">
     </div>
+
     <div class="form-group">
       <label for="country">Country</label>
+        {{#each detailed_message }}
+          {{#unless country}}
+            <span class="red">  is required. </span>
+          {{/unless}}
+        {{/each}}
       <input type="text" name="country" class="form-control" id="country">
     </div>
+
     <div class="form-group">
       <label for="contact">Contact</label>
+      {{#each detailed_message }}
+          {{#unless contact}}
+            <span class="red">  is required. </span>
+          {{/unless}}
+        {{/each}}
       <input type="text" name="contact" class="form-control" id="contact">
     </div>
+
     <button type="submit" class="btn btn-primary"> Submit </button>
   </form>
   </div>

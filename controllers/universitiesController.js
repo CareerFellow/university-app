@@ -1,4 +1,5 @@
 import University from "./../models/university";
+
 import flash from 'connect-flash';
 const universities = {};
 
@@ -26,6 +27,7 @@ universities.getUniversities = async (req , res) => {
   try{
     const universities = await University.find({});
     res.render('universities' , {allUniversities : universities});
+    
   }catch(error){
     req.flash('error', error.message);
     res.redirect('/');
