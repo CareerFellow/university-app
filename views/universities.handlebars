@@ -2,10 +2,22 @@
   <div class="table-title">
     <div class="row">
       <div class="col">
-        <h2>Manage Universities</h2>
+        <a href="/university"> <h2>Manage Universities</h2> </a>
       </div>
-      <div class="col">
+      <div class="col-sm-6">
         <a href="/university/add" class="btn btn-success"> Add New University</a>
+        <div>
+          <form method="POST" action="/university">
+            <div class="col-lg-8">
+              <div class="input-group">
+                <span class="input-group-btn">
+                  <button class="btn btn-info btn-border" type="submit" > Go </button>
+                </span>
+                <input type="text" name="universityName" class="form-control" placeholder="Search by university name...">
+              </div>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   </div>
@@ -27,6 +39,12 @@
         <th>Actions</th>
       </tr>
     </thead>
+  
+  {{#if noRecord }}
+    <div class="alert alert-danger">No record found</div>
+  {{/if}}
+   {{#unless noRecord }}
+   
     <tbody>
       {{#each allUniversities}}
       <tr>
@@ -51,7 +69,8 @@
         <th>Contact</th>
         <th>Actions</th>
       </tr>
-    </tbody>   
+    </tbody>
+    {{/unless}}
   </table>
 </div>
 

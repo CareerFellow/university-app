@@ -9,69 +9,52 @@
       </div>
     </div>
   </div>
-  <div class="form-wrapper">
-    
-    
-
+  <div class="form-wrapper">  
     {{#if success_message }}
       <div class="alert alert-success">{{success_message}}</div>
     {{/if}}
     {{#if error_message}}
       <div class="alert alert-danger">{{error_message}}</div>
     {{/if}}
-
-
-
-    <form action="/university" method="POST">
-    
+  <form action="/university/add" method="POST">
     <div class="form-group">
       <label for="universityName"> University Name</label>
-        {{#each detailed_message }}
-          {{#unless universityName}}
-            <span class="red">  is required. </span>
-          {{/unless}}
-        {{/each}}
-      <input type="text" name="universityName" class="form-control" id="universityName">
+          {{#if errors.universityName}}
+            <span class="red">  {{errors.universityName.msg}} </span>
+          {{/if}}
+      <input type="text" name="universityName" value="{{university.universityName}}" class="form-control" id="universityName">
     </div>
 
     <div class="form-group">
       <label for="address">Address</label>
-       {{#each detailed_message }}
-          {{#unless address}}
-            <span class="red">  is required. </span>
-          {{/unless}}
-        {{/each}}
-      <input type="text" name="address" class="form-control" id="address">
+          {{#if errors.address}}
+            <span class="red">  {{errors.address.msg}} </span>
+          {{/if}}
+      <input type="text" name="address" value="{{university.address}}" class="form-control" id="address">
     </div>
     
     <div class="form-group">
       <label for="city">City</label>
-        {{#each detailed_message }}
-          {{#unless city}}
-            <span class="red">  is required. </span>
-          {{/unless}}
-        {{/each}}
-      <input type="text" name="city" class="form-control" id="city">
+       {{#if errors.city}}
+          <span class="red">  {{errors.city.msg}} </span>
+        {{/if}}
+      <input type="text" name="city" value="{{university.city}}" class="form-control" id="city">
     </div>
 
     <div class="form-group">
       <label for="country">Country</label>
-        {{#each detailed_message }}
-          {{#unless country}}
-            <span class="red">  is required. </span>
-          {{/unless}}
-        {{/each}}
-      <input type="text" name="country" class="form-control" id="country">
+        {{#if errors.country}}
+          <span class="red">  {{errors.country.msg}} </span>
+        {{/if}}      
+        <input type="text" name="country" value="{{university.country}}" class="form-control" id="country">
     </div>
 
     <div class="form-group">
       <label for="contact">Contact</label>
-      {{#each detailed_message }}
-          {{#unless contact}}
-            <span class="red">  is required. </span>
-          {{/unless}}
-        {{/each}}
-      <input type="text" name="contact" class="form-control" id="contact">
+        {{#if errors.contact}}
+          <span class="red">  {{errors.contact.msg}} </span>
+        {{/if}}
+      <input type="text" name="contact" value="{{university.contact}}" class="form-control" id="contact">
     </div>
 
     <button type="submit" class="btn btn-primary"> Submit </button>

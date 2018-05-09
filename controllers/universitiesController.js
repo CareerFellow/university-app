@@ -1,6 +1,8 @@
 import University from "./../models/university";
 
 import flash from 'connect-flash';
+import {check , validationResult } from "express-validator/check";
+import { matchedData } from "express-validator/filter";
 const universities = {};
 
 universities.index = async (req, res) => {
@@ -11,16 +13,21 @@ universities.addUniversity = async (req, res) => {
   res.render('addUniversity');
 }
 
-universities.storeUniversity = async (req, res) => {
-  const newUniversity = new University(req.body);
+universities.storeUniversity = async (req, res , next) => {
+  const errors = await validationResult(req);
+  if( !errors.isEmpty() ) {
+    const university = matchedData(req);
+    return res.render('addUniversity' , { errors : errors.mapped() , university : university });
+  }else{
     try {
-      const university = await newUniversity.save();  
-      req.flash('success' , 'User is successfully added.')
-
-    }catch(error){
-        req.flash('error' , error.message)
-    }
-      res.redirect('/university/add');
+        const newUniversity = new University(req.body);
+        const university = await newUniversity.save(req.body);
+        req.flash('success' , 'User is successfully saved.')
+      }catch(error){
+        req.flash('error' , error.message);
+      }
+  }
+  res.redirect('/university/add');
 }
 
 universities.getUniversities = async (req , res) => {
@@ -67,6 +74,14 @@ universities.deleteUniversity = async (req, res ) => {
     res.redirect('/university');
 }
 
-
+universities.findByName = async (req, res) => {
+  let { universityName } = req.body;
+  let university = await University.find({universityName});
+  if( university.length < 1 )
+  {
+   return res.render('universities' , {noRecord : 'No record found.'})
+  }
+  res.render('universities' , {allUniversities : university});
+}
 
 export default universities;

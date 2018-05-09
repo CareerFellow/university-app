@@ -40,3 +40,17 @@ h2 {
 .red {
   color : red;
 }
+
+.btn-border {
+  border-radius: 4px 0px 0px 4px;
+}
+
+a {
+  color: rgb(175, 161, 161);
+  text-decoration: none;
+}
+
+a:hover {
+  color: #FFC107;
+  text-decoration: none;
+}
