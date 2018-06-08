@@ -27,7 +27,7 @@ app.use(bodyParser.urlencoded({extended : false}))
 
 app.use(cookieParser());
 app.use(session({
-  cookie : { maxAge: 6000 },
+  cookie : { maxAge: 36000000 },
   secret : "my_secret",
   saveUninitialized : false,
   resave : false
@@ -38,6 +38,7 @@ app.use((req, res, next) => {
   res.locals.success_message = req.flash('success');
   res.locals.error_message = req.flash('error');
   res.locals.detailed_message = req.flash('detailed_msg')
+  res.locals.session = req.session.user;
   next();
 });
 

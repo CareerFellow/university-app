@@ -6,7 +6,11 @@ import { matchedData } from "express-validator/filter";
 const universities = {};
 
 universities.index = async (req, res) => {
-  res.render('home');
+  res.render('signup');
+}
+
+universities.signUp = async (req, res) => {
+  
 }
 
 universities.addUniversity = async (req, res) => {

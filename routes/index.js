@@ -1,27 +1,45 @@
 import express from "express";
 var router = require('express-promise-router')();
 
+import home from './../controllers/homeController';
 import universities from "./../controllers/universitiesController";
-// import { schemas , validateBody , validateParams } from '../helpers/routeHelpers';
-import {addUniValidator} from '../helpers/validatorHelper';
+import users from './../controllers/usersController';
+
+import { addUniValidator , signupValidator, signinValidator, checkAuth } from '../helpers/validatorHelper';
 import { check, validationResult } from "express-validator/check";
 
+// Signup and Signin routes
+router.route('/signup')
+  .get(home.index)
+  .post( users.signup)
+router.route('/signin')
+  .get(users.signin)
+  .post(signinValidator , users.login)
 
+// Main App (Secret)
 router.route('/')
-  .get(universities.index);
+  .get( checkAuth ,users.home)
 
+// Logout Route
+router.route('/logout')
+  .get(checkAuth , users.logout)
+
+  // UNIVERSITY ROUTES
 router.route('/university')
-  .get( universities.getUniversities)
-  .post(universities.findByName)
+  .get( checkAuth, universities.getUniversities)
+  .post(checkAuth, universities.findByName)
 
 router.route('/university/add')  
-  .get(universities.addUniversity)
-  .post(addUniValidator,  universities.storeUniversity)
+  .get(checkAuth, universities.addUniversity)
+  .post(checkAuth, addUniValidator,  universities.storeUniversity)
 
   router.route('/university/update/:universityId')  
-  .get(universities.showUniversity)
+  .get(checkAuth, universities.showUniversity)
+  .post(checkAuth, universities.updateUniversity)
 
 router.route('/university/delete/:universityId')  
-  .get(universities.deleteUniversity)
+  .get(checkAuth, universities.deleteUniversity)
+
+  // USER's ROUTE
 
 export default router;
