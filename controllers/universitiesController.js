@@ -9,10 +9,6 @@ universities.index = async (req, res) => {
   res.render('signup');
 }
 
-universities.signUp = async (req, res) => {
-  
-}
-
 universities.addUniversity = async (req, res) => {
   res.render('addUniversity');
 }
@@ -26,7 +22,7 @@ universities.storeUniversity = async (req, res , next) => {
     try {
         const newUniversity = new University(req.body);
         const university = await newUniversity.save(req.body);
-        req.flash('success' , 'User is successfully saved.')
+        req.flash('success' , 'University is successfully saved.')
       }catch(error){
         req.flash('error' , error.message);
       }

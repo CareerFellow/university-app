@@ -1,0 +1,149 @@
+<div class="table-wrapper col-lg-6 center">
+  <div class="table-title">
+    <div class="row">
+      <div class="col">
+        <h2>Add Program</h2>
+      </div>
+      <div class="col">
+        <a href="/university" class="btn btn-success"> View All</a>
+      </div>
+    </div>
+  </div>
+  <div class="form-wrapper">  
+    {{#if success_message }}
+      <div class="alert alert-success">{{success_message}}</div>
+    {{/if}}
+    {{#if error_message}}
+      <div class="alert alert-danger">{{error_message}}</div>
+    {{/if}}
+  <form action="/program/add" method="POST">
+    <div class="form-group">
+      <label for="programName"> Program Name *</label>
+          {{#if errors.programName}}
+            <span class="red">  {{errors.programName.msg}} </span>
+          {{/if}}
+      <input type="text" name="programName" value="{{program.programName}}" class="form-control" id="programName">
+    </div>
+
+    <div class="form-group">
+      <label for="universityName">University Name *</label>
+          {{#if errors.universityName}}
+            <span class="red">  {{errors.universityName.msg}} </span>
+          {{/if}}
+      <select name="universityName" id="universityName" class="form-control">
+        {{#each universities }}
+          <option value="{{this._id}}"  {{#if_equal ../universityId this._id}} selected {{/if_equal}}>{{this.universityName}} </option>
+        {{/each}}
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="departmentName">Department Name *</label>
+          {{#if errorrs.departmentName}}
+            <span class="red">  {{errors.departmentName.msg}} </span>
+          {{/if}}
+      <input type="text" name="departmentName" value="{{program.departmentName}}" class="form-control" id="departmentName">
+    </div>
+    
+    <div class="form-group">
+      <label for="country">Degree *</label>
+        {{#if errors.degree}}
+          <span class="red">  {{errors.degree.msg}} </span>
+        {{/if}}     
+        <select class="form-control" id="degree" name="degree">
+          <option value="BS">Bachelor's</option>
+          <option value="MS">Masters</option>
+          <option value="PHD">PHD</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+      <label for="contact">Duration *</label>
+        {{#if errors.duration}}
+          <span class="red">  {{errors.duration.msg}} </span>
+        {{/if}}
+      <input type="text" name="duration" value="{{program.duration}}" class="form-control" id="duration">
+    </div>
+
+    <div class="form-group">
+      <label for="entryRequirement"> Entry Requirement *</label>
+      {{#if errors.entryRequirement}}
+        <span class="red"> {{errors.entryRequirement.msg}} </span>
+      {{/if}}
+      <input type="text" name="entryRequirement" value="{{program.entryRequirement}}" class="form-control" id="entryRequirement">
+    </div>
+
+    <div class="form-group">
+      <label for="totalFee"> Total Fee</label>
+      {{#if errors.totalFee}}
+        <span class="red"> {{errors.totalFee.msg}} </span>
+      {{/if}}
+      <input type="text" name="totalFee" value="{{program.totalFee}}" class="form-control" id="totalFee">
+    </div>
+
+    <div class="form-group">
+      <label for="programType"> Program Type *</label>
+      {{#if errors.programType}}
+        <span class="red"> {{errors.programType.msg}} </span>
+      {{/if}}
+      <select name="programType" id="programType" class="form-control">
+        <option value="M">Morning</option>
+        <option value="E">Evening</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="creditHours">Credit Hours *</label>
+      {{#if errors.creditHours}}
+        <span class="red"> {{errors.creditHours.msg}} </span>
+      {{/if}}
+      <input type="text" name="creditHours" value="{{program.creditHours}}" class="form-control" id="creditHours">
+    </div>
+
+    <div class="form-group">
+      <label for="entryTestDate"> Entry Test Date</label>
+      {{#if errors.entryTestDate}}
+        <span class="red"> {{errors.entryTestDate.msg}} </span>
+      {{/if}}
+      <input type="date" name="entryTestDate" value="{{program.entryTestDate}}" class="form-control" id="entryTestDate">
+    </div>
+
+    <div class="form-group">
+      <label for="applicationDate"> Application Date</label>
+      {{#if errors.applicationDate}}
+        <span class="red"> {{errors.applicationDate.msg}} </span>
+      {{/if}}
+      <input type="date" name="applicationDate" value="{{program.applicationDate}}" class="form-control" id="applicationDate">
+    </div>
+
+    <div class="form-group">
+      <label for="documentSubmissionDate"> Document Submission Date</label>
+      {{#if errors.documentSubmissionDate}}
+        <span class="red"> {{errors.documentSubmissionDate.msg}} </span>
+      {{/if}}
+      <input type="date" name="documentSubmissionDate" value="{{program.documentSubmissionDate}}" class="form-control" id="documentSubmissionDate">
+    </div>
+    
+    <div class="form-group">
+      <label for="admissionDecisionDate"> Admission Decision Date</label>
+      {{#if errors.admissionDecisionDate}}
+        <span class="red"> {{errors.admissionDecisionDate.msg}} </span>
+      {{/if}}
+      <input type="date" name="admissionDecisionDate" value="{{program.admissionDecisionDate}}" class="form-control" id="admissionDecisionDate">
+    </div>
+
+     <div class="form-group">
+      <label for="financialAid"> Financial Aid </label>
+      {{#if errors.financialAid}}
+        <span class="red"> {{errors.financialAid.msg}} </span>
+      {{/if}}
+      <select name="financialAid" id="financialAid" class="form-control">
+        <option value="1"> YES </option>        
+        <option value="0"> NO </option>
+      </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary"> Submit </button>
+  </form>
+  </div>
+</div>

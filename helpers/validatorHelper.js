@@ -30,3 +30,14 @@ export const checkAuth = (req, res, next) => {
     next();
   }
 }
+
+export const programValidator = [
+  check('programName').isLength({ min : 1 }).withMessage('Program name is required.'),
+  check('departmentName').isLength({ min : 1 }).withMessage('Department name is required.'),
+  check('degree').isLength({ min : 1 }).withMessage('Degree is required.'),
+  check('duration').isLength({ min : 1 }).withMessage('Duration is required.'),
+  check('entryRequirement').isLength({ min : 1 }).withMessage('Entry requirement is required.'),
+  check('totalFee').isLength({ min : 1 }).withMessage('Fee is required.'),
+  check('programType').isLength({ min : 1 }).withMessage('Program type is required.'),
+  check('creditHours').isLength({ min : 1 }).withMessage('Credit hours are required.'),
+]

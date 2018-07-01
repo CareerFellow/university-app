@@ -4,8 +4,10 @@ var router = require('express-promise-router')();
 import home from './../controllers/homeController';
 import universities from "./../controllers/universitiesController";
 import users from './../controllers/usersController';
+import programs from './../controllers/programController';
 
-import { addUniValidator , signupValidator, signinValidator, checkAuth } from '../helpers/validatorHelper';
+
+import { addUniValidator , signupValidator, signinValidator, checkAuth, programValidator } from '../helpers/validatorHelper';
 import { check, validationResult } from "express-validator/check";
 
 // Signup and Signin routes
@@ -38,8 +40,12 @@ router.route('/university/add')
   .post(checkAuth, universities.updateUniversity)
 
 router.route('/university/delete/:universityId')  
-  .get(checkAuth, universities.deleteUniversity)
+  .get(checkAuth, universities.deleteUniversity);
 
-  // USER's ROUTE
+  // Program's ROUTE
+router.route('/program/add')
+  // .get(programs.deleteProgram)
+  .get(programs.addProgram)
+  .post( programValidator , programs.storeProgram)
 
 export default router;

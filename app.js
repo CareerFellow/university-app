@@ -22,6 +22,14 @@ Handlebars.registerHelper("inc", function(value, options)
     return parseInt(value) + 1;
 });
 
+Handlebars.registerHelper('if_equal', function(a, b, opts) {
+  if (a == b) {
+      return opts.fn(this)
+  } else {
+      return opts.inverse(this)
+  }
+});
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended : false}))
 
