@@ -4,7 +4,19 @@ import flash from 'connect-flash';
 import { check , validationResult } from "express-validator/check";
 import { matchedData } from "express-validator/filter";
 
+import nodemailer from 'nodemailer';
+
 const usersController = {}
+
+let transporter = nodemailer.createTransport({
+  service : 'gmail',
+  auth : {
+    user : 'test@gmail.com',
+    pass : 'test'
+  }
+})
+
+
 
 usersController.signup = async (req, res) => {
   
@@ -15,11 +27,24 @@ usersController.signup = async (req, res) => {
   }else {
     try {
       const newUser = new User(req.body);
-      const user = await newUser.save();  
-      req.flash('success' , 'Please, Login to continue.')
+      const user = await newUser.save(); 
+
+      let mailOptions = {
+        from : 'devswaam@gmail.com',
+        to : req.body.email,
+        subject : 'Welcome to University App',
+        text : 'Dear User, We warmly welcome to this university app.'
+      }
+      
+      transporter.sendMail(mailOptions, (error , info) => {
+        if(error) {
+          req.flash('error' , error)
+        }
+      })
     }catch(error) {
       req.flash('error' , error.message)
     }
+    req.flash('success' , 'Please, Check your email and login to continue.')
     res.redirect('/signin');
   }
 }
