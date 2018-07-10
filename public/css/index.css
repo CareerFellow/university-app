@@ -53,4 +53,8 @@ a {
 a:hover {
   color: #FFC107;
   text-decoration: none;
+} 
+
+.dark {
+  color : #435761;
 }

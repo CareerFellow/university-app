@@ -84,4 +84,10 @@ universities.findByName = async (req, res) => {
   res.render('universities' , {allUniversities : university});
 }
 
+universities.getUniversityById = async (req, res) => {
+  let { universityId } = req.params;
+  let university = await University.findOne({_id : universityId});
+  res.render('universityDetail' , { university : university})
+}
+
 export default universities;

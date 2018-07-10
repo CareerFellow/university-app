@@ -49,7 +49,7 @@
       {{#each allUniversities}}
       <tr>
         <td> {{inc @index}}</td>
-        <td>{{this.universityName}}</td>
+        <td><a href="university/{{this._id}}"> {{this.universityName}} </a> </td>
         <td>{{this.address}}</td>
         <td>{{this.city}}</td>
         <td>{{this.country}}</td>

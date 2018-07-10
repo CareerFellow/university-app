@@ -47,6 +47,20 @@ programs.storeProgram = async (req, res, next) => {
   }
 }
  
+programs.getProgramById = async ( req, res ) => {
+  let { universityId } = req.params;
+  let { programId } = req.params;
+
+  const program = await University.findOne({
+    '_id' : universityId,
+    'programs._id' : programId
+  }, 
+    {'programs.$' : 1}
+  )
+  // res.send(program)
+  res.render('programViews/programDetail' , { program : program });
+}
+
 // programs.updateProgram = async ( req, res ) => {
 
 // }

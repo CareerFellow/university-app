@@ -1,0 +1,46 @@
+<div class="table-wrapper">
+  <div class="table-title">
+    <div class="row">
+      <div class="col">
+        <a href="/"> <h2>Home</h2> </a>
+      </div>
+    </div>
+  </div>
+  <table class="table">
+     {{#if success_message }}
+      <div class="alert alert-success">{{success_message}}</div>
+    {{/if}}
+    {{#if error_message}}
+      <div class="alert alert-danger">{{error_message}}</div>
+    {{/if}}
+
+    <tbody>
+    
+       <tr>
+         <th> Program Name</th>
+         <td>  {{program.programs.0.programName}}</td>
+       </tr> 
+       <tr>
+         <th> Department Name </th>
+         <td> {{program.programs.0.departmentName}} </td>
+       </tr>
+       <tr>
+         <th> Degree </th>
+         <td> {{program.programs.0.degree}}</td>
+       </tr>
+       <tr>
+         <th>Duration </th>
+         <td> {{program.programs.0.duration}}</td>
+       </tr>
+        <tr>
+         <th> Entry Requirement </th>
+         <td> {{program.programs.0.entryRequirement}}</td>
+        </tr> 
+
+       <tr>
+         <th> Total Fee </th>
+         <td> {{program.programs.0.totalFee}}  </td>
+       </tr> 
+    </tbody>
+  </table>
+</div>

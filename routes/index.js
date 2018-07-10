@@ -20,7 +20,7 @@ router.route('/signin')
 
 // Main App (Secret)
 router.route('/')
-  .get( checkAuth ,users.home)
+  .get(checkAuth ,users.home)
 
 // Logout Route
 router.route('/logout')
@@ -35,9 +35,12 @@ router.route('/university/add')
   .get(checkAuth, universities.addUniversity)
   .post(checkAuth, addUniValidator,  universities.storeUniversity)
 
-  router.route('/university/update/:universityId')  
-  .get(checkAuth, universities.showUniversity)
-  .post(checkAuth, universities.updateUniversity)
+router.route('/university/update/:universityId')  
+.get(checkAuth, universities.showUniversity)
+.post(checkAuth, universities.updateUniversity)
+
+router.route('/university/:universityId')
+  .get(checkAuth, universities.getUniversityById)
 
 router.route('/university/delete/:universityId')  
   .get(checkAuth, universities.deleteUniversity);
@@ -45,7 +48,12 @@ router.route('/university/delete/:universityId')
   // Program's ROUTE
 router.route('/program/add')
   // .get(programs.deleteProgram)
-  .get(programs.addProgram)
-  .post( programValidator , programs.storeProgram)
+  .get( checkAuth, programs.addProgram)
+  .post( checkAuth, programValidator , programs.storeProgram)
 
+router.route('/program/:universityId/:programId')  
+  .get(checkAuth , programs.getProgramById)
+
+router.route('/verify_account/:verificationCode')  
+  .get(users.verifyAccount)
 export default router;

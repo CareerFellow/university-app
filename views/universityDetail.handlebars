@@ -1,0 +1,73 @@
+<div class="table-wrapper">
+  <div class="table-title">
+    <div class="row">
+      <div class="col">
+        <a href="/"> <h2>Home</h2> </a>
+      </div>
+    </div>
+  </div>
+  <table class="table">
+     {{#if success_message }}
+      <div class="alert alert-success">{{success_message}}</div>
+    {{/if}}
+    {{#if error_message}}
+      <div class="alert alert-danger">{{error_message}}</div>
+    {{/if}}
+    
+    {{#if noRecord }}
+      <div class="alert alert-danger">No record found</div>
+    {{/if}}
+
+    <tbody>
+       <tr>
+         <th> University Name</th>
+         <td> {{university.universityName}}</td>
+       </tr> 
+       <tr>
+         <th> Address </th>
+         <td> {{university.address}} </td>
+       </tr>
+       <tr>
+         <th> City </th>
+         <td> {{university.city}}</td>
+       </tr>
+       <tr>
+         <th>Country </th>
+         <td> {{university.country}}</td>
+       </tr> 
+    </tbody>
+  </table>
+</div>
+<div class="container">
+    <div class="row">
+      {{#each university.programs}}
+        <div class="col-md-6"> 
+          <a href="/program/{{../university._id}}/{{this._id}}" class="dark"> Program Name :  {{this.programName}}  ,  </a>
+          Department Name : {{this.departmentName}}
+        </div>
+      {{/each}}
+    </div>
+</div>
+
+{{!-- 
+{{#ifCond paginate.hasPreviousPages '||' paginate.hasNextPages( {{{pageCount}}} )}}
+  <ul>
+    {{#if paginate.hasPreviousPages}}
+    <li class="previous">
+      <a href="{{paginate.href(true).prev}}"> previous </a>
+    </li>
+    {{#/if}}
+    {{#if pages}}
+      {{#each pages}}
+        <a href="{{page.url}}"> {{page.number}} </a>
+      {{/each}}
+    {{#/if}}  
+    {{#if paginate.hasNextPages(pageCount)}}
+      <li class="next">
+        <a href="{{paginate.href().next}}">
+          next
+        </a>
+      </li>
+    {{#/if}}
+  </ul>
+{{#/if}} --}}
