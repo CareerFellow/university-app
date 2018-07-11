@@ -1,5 +1,7 @@
+
 import User from './../models/User';
 import flash from 'connect-flash';
+
 
 import { check , validationResult } from "express-validator/check";
 import { matchedData } from "express-validator/filter";
@@ -13,13 +15,12 @@ const usersController = {}
 let transporter = nodemailer.createTransport({
   service : 'gmail',
   auth : {
-    user : 'test@test.com',
-    pass : 'test'
+    user : process.env.SENDER_EMAIL,
+    pass : process.env.SENDER_PASSWORD
   }
 })
 
 usersController.signup = async (req, res) => {
-  
   const errors = validationResult(req);
   if(!errors.isEmpty()) {
     const user = matchedData(req);
@@ -27,8 +28,6 @@ usersController.signup = async (req, res) => {
   }else {
     try {
       let verificationCode = crypto.randomBytes(10).toString('hex');
-      console.log('Verification Code :' , verificationCode);
-      
       const newUser = new User(req.body);
       newUser.verificationCode = verificationCode;
       newUser.isVerified = false;
