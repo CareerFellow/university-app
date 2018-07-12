@@ -2,6 +2,7 @@
 import User from './../models/User';
 import flash from 'connect-flash';
 
+import { sendWelcomeEmail } from '../services/emailService';
 
 import { check , validationResult } from "express-validator/check";
 import { matchedData } from "express-validator/filter";
@@ -11,14 +12,6 @@ import nodemailer from 'nodemailer';
 import crypto from 'crypto';
 
 const usersController = {}
-
-let transporter = nodemailer.createTransport({
-  service : 'gmail',
-  auth : {
-    user : process.env.SENDER_EMAIL,
-    pass : process.env.SENDER_PASSWORD
-  }
-})
 
 usersController.signup = async (req, res) => {
   const errors = validationResult(req);
@@ -33,22 +26,9 @@ usersController.signup = async (req, res) => {
       newUser.isVerified = false;
       
       const user = await newUser.save(); 
-
-      let html = `<h3> Welcome to University App. </h3> </br>` + 
-                 `<p> Please, click the url below to verify your account.</p> </br>` +
-                 `<p> http://localhost:3000/verify_account/${verificationCode} </p>`;
-      let mailOptions = {
-        from : 'devswaam@gmail.com',
-        to : req.body.email,
-        subject : 'Welcome to University App',
-        html : html
-      }      
-      transporter.sendMail(mailOptions, (error , info) => {
-        if(error) {
-          req.flash('error' , error)
-        }
-      })
+      sendWelcomeEmail(req.body.email , verificationCode);
     }catch(error) {
+      throw error;
       req.flash('error' , error.message)
     }
     req.flash('success' , 'Please, Verify your email to continue.')
@@ -80,20 +60,7 @@ usersController.login = async (req, res) => {
         }else {
           // if user is active then login else send link to activate.
           if(user.isVerified == false) {
-            console.log('user not verified!')
-            let html =`<h3>Please, Click the link below </h3> </br> ` + 
-                      `<p>http://localhost:3000/verify_account/${user.verificationCode} </p>`;
-            let mailOptions = {
-              from : 'devswaam@gmail.com',
-              to : user.email,
-              subject : 'Welcome to University App',
-              html : html
-            }      
-            transporter.sendMail(mailOptions, (error , info) => {
-              if(error) {
-                req.flash('error' , error)
-              }
-            })
+            sendWelcomeEmail(user.email , user.verificationCode );
             req.flash('error' , 'Please check your email and activate your account.')
             return res.redirect('/signin')
           }
@@ -104,7 +71,7 @@ usersController.login = async (req, res) => {
       }
       res.redirect('/signin')
     }catch( error){
-      next(error)
+      throw Error(error);
     }
   }
   }
@@ -129,6 +96,5 @@ usersController.login = async (req, res) => {
       req.flash('error', 'Invalid access.');
       res.redirect('/signin')
     }
-    // console.log(verificationCode)
   }
 export default usersController;
