@@ -20,6 +20,14 @@ usersController.signup = async (req, res) => {
     return res.render('signup' , { errors : errors.mapped() , users : user})
   }else {
     try {
+      const email = await User.findOne({email : req.body.email});
+      if(email){
+        return res.render('signup' , {users : req.body , emailError : 'Email is already registered.'})
+      }
+      const username = await User.findOne({username : req.body.username});
+      if(username) {
+        return res.render('signup' , {users : req.body , usernameError : 'Username is already registered.'})
+      }
       let verificationCode = crypto.randomBytes(10).toString('hex');
       const newUser = new User(req.body);
       newUser.verificationCode = verificationCode;
@@ -27,11 +35,12 @@ usersController.signup = async (req, res) => {
       
       const user = await newUser.save(); 
       sendWelcomeEmail(req.body.email , verificationCode);
+      req.flash('success' , 'Please, Verify your email to continue.')
+      
     }catch(error) {
       throw error;
       req.flash('error' , error.message)
-    }
-    req.flash('success' , 'Please, Verify your email to continue.')
+    }    
     res.redirect('/signin');
   }
 }
@@ -95,6 +104,30 @@ usersController.login = async (req, res) => {
     }else {
       req.flash('error', 'Invalid access.');
       res.redirect('/signin')
+    }
+  }
+
+  usersController.forgotPassword = async (req, res) => {
+    res.render('forgotpassword')
+  }
+
+  usersController.updatePassword = async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      const user = matchedData(req);
+      return res.render('forgotpassword' , {errors : errors.mapped() , users: user});
+    }else {
+      let username = req.body.username;
+      let password = req.body.password;
+      const user = await User.findOne({username});
+      if( user ) {
+        user.password = password;
+        user.save();
+        req.flash('success' , 'Password has been updated. Please, login to continue.');  
+      }else {
+        req.flash('error' , 'User doesnt exist.');
+      }
+      res.redirect('/forgotpassword')
     }
   }
 export default usersController;

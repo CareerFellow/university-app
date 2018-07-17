@@ -21,15 +21,11 @@ export const signinValidator = [
   check('password').isLength({ min : 1 }).withMessage('Password is required.')
 ]
 
-// check if user is logged in
-export const checkAuth = (req, res, next) => {
-  if(!req.session.user){
-    req.flash('success', 'Please log in to continue.')
-    res.redirect('/signin')
-  }else{
-    next();
-  }
-}
+export const forgotPasswordValidator = [
+  check('username').isLength({ min : 1 }).withMessage('Username is required.'),
+  check('password', 'Password is required.').isLength({ min : 1 }),
+  // check('confirmPassword').equals('password').withMessage('Password doesnt match.')
+]
 
 export const programValidator = [
   check('programName').isLength({ min : 1 }).withMessage('Program name is required.'),
@@ -41,3 +37,14 @@ export const programValidator = [
   check('programType').isLength({ min : 1 }).withMessage('Program type is required.'),
   check('creditHours').isLength({ min : 1 }).withMessage('Credit hours are required.'),
 ]
+
+// check if user is logged in
+export const checkAuth = (req, res, next) => {
+  if(!req.session.user){
+    req.flash('success', 'Please log in to continue.')
+    res.redirect('/signin')
+  }else{
+    next();
+  }
+}
+

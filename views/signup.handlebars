@@ -13,6 +13,12 @@
     {{#if error_message}}
       <div class="alert alert-danger">{{error_message}}</div>
     {{/if}}
+    {{#if emailError}}
+      <div class="alert alert-danger"> {{emailError}} </div>
+    {{/if}}
+    {{#if usernameError}} 
+      <div class="alert alert-danger"> {{usernameError}} </div>
+    {{/if}}
 
   <form action="/signup" method="POST">
     <div class="form-group">

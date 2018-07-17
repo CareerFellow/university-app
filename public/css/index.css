@@ -58,3 +58,11 @@ a:hover {
 .dark {
   color : #435761;
 }
+.dark:hover {
+  color: black;
+  text-decoration: underline;
+}
+
+.signin {
+  margin-top: 10px;
+}
