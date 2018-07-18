@@ -6,6 +6,7 @@ import flash from 'connect-flash';
 import cookieParser from 'cookie-parser';
 import session from 'express-session';
 import Handlebars from 'handlebars';
+import paginate from 'express-paginate';
 
 const app = express();
 
@@ -50,6 +51,8 @@ app.use((req, res, next) => {
   res.locals.session = req.session.user;
   next();
 });
+
+app.use(paginate.middleware(10,50))
 
 app.use("/" , route)
 

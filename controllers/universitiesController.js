@@ -3,6 +3,8 @@ import University from "./../models/university";
 import flash from 'connect-flash';
 import {check , validationResult } from "express-validator/check";
 import { matchedData } from "express-validator/filter";
+import paginate from 'express-paginate';
+
 const universities = {};
 
 universities.index = async (req, res) => {
@@ -32,11 +34,19 @@ universities.storeUniversity = async (req, res , next) => {
 
 universities.getUniversities = async (req , res) => {
   try{
-    const universities = await University.find({});
-    res.render('universities' , {allUniversities : universities});
-    
+    const [ results , itemCount ] = await Promise.all([
+      University.find({}).limit(req.query.limit).skip(req.skip).lean().exec(),
+      University.count({})
+    ]);
+
+    const pageCount = Math.ceil(itemCount / req.query.limit);
+    res.render('universities', {
+      allUniversities: results,
+      pages: paginate.getArrayPages(req)(3, pageCount, req.query.page)
+    });
+
   }catch(error){
-    req.flash('error', error.message);
+    throw Error(error.message)
     res.redirect('/');
   }
 }
