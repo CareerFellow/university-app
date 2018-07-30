@@ -13,7 +13,7 @@ import { check, validationResult } from "express-validator/check";
 // Signup and Signin routes
 router.route('/signup')
   .get(home.index)
-  .post(signupValidator, users.signup)
+  .post(signupValidator,users.signup)
 router.route('/signin')
   .get(users.signin)
   .post(signinValidator , users.login)
