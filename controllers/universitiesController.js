@@ -12,24 +12,40 @@ universities.index = async (req, res) => {
 }
 
 universities.addUniversity = async (req, res) => {
-  res.render('addUniversity');
+  res.render('adminViews/universityViews/addUniversity');
 }
 
 universities.storeUniversity = async (req, res , next) => {
   const errors = await validationResult(req);
-  if( !errors.isEmpty() ) {
-    const university = matchedData(req);
-    return res.render('addUniversity' , { errors : errors.mapped() , university : university });
+  const university = matchedData(req);
+  if( !errors.isEmpty()) {
+    return res.render('adminViews/universityViews/addUniversity' , { errors : errors.mapped() , university : university });
   }else{
     try {
-        const newUniversity = new University(req.body);
-        const university = await newUniversity.save(req.body);
-        req.flash('success' , 'University is successfully saved.')
+        if(Object.keys(req.files).length === 0 && req.files.constructor === Object)
+        {
+          return res.render('adminViews/universityViews/addUniversity' , { logoError : 'Logo is required.' , university: university} )
+        }
+        let myfile = req.files.universityLogo;
+        let type = req.files.universityLogo.mimetype;
+        type = type.split("/")
+        let ext = type[1].toLowerCase();
+        if(ext == 'jpg' || ext == 'jpeg' || ext == 'png') {
+          let newName = req.body.universityName +'_logo.'+ext;
+          let path = `./public/images/${newName}`;
+          const newUniversity = new University(req.body);
+          newUniversity.logo = path;
+          await newUniversity.save(req.body);
+          await myfile.mv(path);      
+          req.flash('success' , 'University is successfully saved.')
+        }else {
+          return res.render('adminViews/universityViews/addUniversity' , { logoError : 'Upload a valid image.' , university: university} )
+        }
       }catch(error){
         req.flash('error' , error.message);
       }
   }
-  res.redirect('/university/add');
+  res.redirect('/admin/university/add');
 }
 
 universities.getUniversities = async (req , res) => {
@@ -40,14 +56,14 @@ universities.getUniversities = async (req , res) => {
     ]);
 
     const pageCount = Math.ceil(itemCount / req.query.limit);
-    res.render('universities', {
+    res.render('adminViews/universityViews/universities', {
       allUniversities: results,
       pages: paginate.getArrayPages(req)(3, pageCount, req.query.page)
     });
 
   }catch(error){
     throw Error(error.message)
-    res.redirect('/');
+    res.redirect('/admin/');
   }
 }
 
@@ -58,7 +74,7 @@ universities.showUniversity = async (req, res) => {
       req.flash('error', 'No record found against the given id.')
       return res.redirect('/university');
     }
-    res.render('updateUniversity' , {universityData : university}); 
+    res.render('adminViews/universityViews/updateUniversity' , {universityData : university}); 
 }
 
 universities.updateUniversity = async (req, res) =>{
@@ -66,10 +82,10 @@ universities.updateUniversity = async (req, res) =>{
   let isUpdated = await University.findByIdAndUpdate(universityId , req.body);
   if ( !isUpdated ) {
     req.flash('error', 'Couldnt update successfully.');
-    res.redirect('/university/');
+    res.redirect('/admin/university/');
   }
   req.flash('success' , 'Successfully updated.');
-  res.redirect('/university');
+  res.redirect('/admin/university');
 }
 
 
@@ -78,10 +94,10 @@ universities.deleteUniversity = async (req, res ) => {
   let isDeleted = await University.findByIdAndRemove(universityId);
   if ( !isDeleted ) {
     req.flash('error' , 'Couldnt delete record.');
-    res.redirect('/university');
+    res.redirect('/admin/university');
   }
     req.flash('success' , 'Record is successfully deleted.');
-    res.redirect('/university');
+    res.redirect('/admin/university');
 }
 
 universities.findByName = async (req, res) => {
@@ -89,15 +105,15 @@ universities.findByName = async (req, res) => {
   let university = await University.find({universityName});
   if( university.length < 1 )
   {
-   return res.render('universities' , {noRecord : 'No record found.'})
+   return res.render('adminViews/universityViews/universities' , {noRecord : 'No record found.'})
   }
-  res.render('universities' , {allUniversities : university});
+  res.render('adminViews/universityViews/universities' , {allUniversities : university});
 }
 
 universities.getUniversityById = async (req, res) => {
   let { universityId } = req.params;
   let university = await University.findOne({_id : universityId});
-  res.render('universityDetail' , { university : university})
+  res.render('adminViews/universityViews/universityDetail' , { university : university})
 }
 
 export default universities;

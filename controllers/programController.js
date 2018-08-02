@@ -6,7 +6,7 @@ const programs = {};
 
 programs.addProgram = async ( req, res ) => {
   const universities = await University.find({}, {"universityName" : 1})
-  res.render('programViews/addProgram' , {universities : universities})
+  res.render('adminViews/programViews/addProgram' , {universities : universities})
 }
 
 programs.storeProgram = async (req, res, next) => {
@@ -18,7 +18,7 @@ programs.storeProgram = async (req, res, next) => {
     const errors = await validationResult(req);
     if (!errors.isEmpty()){
       const program = matchedData(req);
-      return res.render('programViews/addProgram', { program : program , errors : errors.mapped() ,
+      return res.render('adminViews/programViews/addProgram', { program : program , errors : errors.mapped() ,
       universities : universities , universityId : universityId })
     }else {
       const universityId = req.body.universityName;
@@ -39,7 +39,7 @@ programs.storeProgram = async (req, res, next) => {
         const isUpdated = await University.findOneAndUpdate({_id : universityId} , {$push : {programs : programs}})
         if(isUpdated){
           req.flash('success' , 'Program successfully added.')
-          res.redirect('/program/add');
+          res.redirect('/admin/program/add');
         }
      }
   }catch(error){
@@ -58,20 +58,7 @@ programs.getProgramById = async ( req, res ) => {
     {'programs.$' : 1}
   )
   // res.send(program)
-  res.render('programViews/programDetail' , { program : program });
+  res.render('adminViews/programViews/programDetail' , { program : program });
 }
-
-// programs.updateProgram = async ( req, res ) => {
-
-// }
-
-// programs.showPrograms = async ( req, res ) => {
-
-// }
-
-// programs.deleteProgram = async ( req, res ) => {
-//   console.log('aimen')
-// }
-
 
 export default programs;

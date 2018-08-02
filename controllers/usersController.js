@@ -41,7 +41,7 @@ usersController.signup = async (req, res) => {
       throw error;
       req.flash('error' , error.message)
     }    
-    res.redirect('/signin');
+    res.redirect('/admin/signin');
   }
 }
 
@@ -71,14 +71,14 @@ usersController.login = async (req, res) => {
           if(user.isVerified == false) {
             sendWelcomeEmail(user.email , user.verificationCode );
             req.flash('error' , 'Please check your email and activate your account.')
-            return res.redirect('/signin')
+            return res.redirect('/admin/signin')
           }
           // password matched, set session and redirect.
           req.session.user = user;
-          return res.redirect('/')        
+          return res.redirect('/admin/dashboard')        
         }
       }
-      res.redirect('/signin')
+      res.redirect('/admin/signin')
     }catch( error){
       throw Error(error);
     }
@@ -91,7 +91,7 @@ usersController.login = async (req, res) => {
 
   usersController.logout = async(req, res) => {
      req.session.destroy((err) => {
-     res.redirect('/signin')
+     res.redirect('/admin/signin')
     });
   }
 
@@ -100,10 +100,10 @@ usersController.login = async (req, res) => {
     let user = await User.findOneAndUpdate({ verificationCode : verificationCode } , {isVerified : true});
     if( user ) {
       req.flash('success', 'Account activated, You may login now.')
-      res.redirect('/signin')
+      res.redirect('/admin/signin')
     }else {
       req.flash('error', 'Invalid access.');
-      res.redirect('/signin')
+      res.redirect('/admin/signin')
     }
   }
 

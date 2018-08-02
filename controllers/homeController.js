@@ -7,4 +7,8 @@ homeController.index = (req , res) => {
   res.render('signup')
 }
 
+
+homeController.dashboard = (req, res) => {
+  res.json("This is admin dashboard.");
+}
 export default homeController;

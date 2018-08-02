@@ -9,47 +9,72 @@ import programs from './../controllers/programController';
 
 import { addUniValidator , signupValidator, signinValidator, checkAuth, programValidator, forgotPasswordValidator} from '../helpers/validatorHelper';
 import { check, validationResult } from "express-validator/check";
+import usersController from "./../controllers/usersController";
+import homeController from "./../controllers/homeController";
 
 // Signup and Signin routes
 router.route('/signup')
   .get(home.index)
   .post(signupValidator,users.signup)
-router.route('/signin')
+router.route('/admin/signin')  //working
   .get(users.signin)
   .post(signinValidator , users.login)
 
-// Main App (Secret)
-router.route('/')
-  .get(checkAuth ,users.home)
+// Admin Routes
+router.route('/admin/dashboard') //working
+  .get(homeController.dashboard)
 
-// Logout Route
-router.route('/logout')
-  .get(checkAuth , users.logout)
-
-  // UNIVERSITY ROUTES
-router.route('/university')
+router.route('/admin/university/add') //working
+  .get( universities.addUniversity)
+  .post( addUniValidator, universities.storeUniversity)
+router.route('/admin/university/update/:universityId')  //working
+  .get(checkAuth, universities.showUniversity)
+  .post(checkAuth, addUniValidator, universities.updateUniversity)   
+router.route('/admin/university/delete/:universityId')  
+  .get(checkAuth, universities.deleteUniversity);
+router.route('/admin/university')  //working
   .get( checkAuth, universities.getUniversities)
   .post(checkAuth, universities.findByName)
 
-router.route('/university/add')  
-  .get(checkAuth, universities.addUniversity)
-  .post(checkAuth, addUniValidator,  universities.storeUniversity)
 
-router.route('/university/update/:universityId')  
-.get(checkAuth, universities.showUniversity)
-.post(checkAuth, universities.updateUniversity)
+  router.route('/admin/program/add')  //done
+  .get( checkAuth, programs.addProgram)
+  .post( checkAuth, programValidator , programs.storeProgram)
+
+
+
+  // Main App (Secret)
+router.route('/admin/')
+  .get(checkAuth ,users.home)
+
+// Logout Route
+router.route('/admin/logout')
+  .get(checkAuth , users.logout)
+
+  // UNIVERSITY ROUTES
+// router.route('/university')
+//   .get( checkAuth, universities.getUniversities)
+//   .post(checkAuth, universities.findByName)
+
+// router.route('/university/add')  
+//   .get(checkAuth, universities.addUniversity)
+//   .post(checkAuth, addUniValidator,  universities.storeUniversity)
+
+// router.route('/university/update/:universityId')  
+// .get(checkAuth, universities.showUniversity)
+// .post(checkAuth, universities.updateUniversity)
 
 router.route('/university/:universityId')
   .get(checkAuth, universities.getUniversityById)
 
-router.route('/university/delete/:universityId')  
-  .get(checkAuth, universities.deleteUniversity);
+// router.route('/university/delete/:universityId')  
+//   .get(checkAuth, universities.deleteUniversity);
 
   // Program's ROUTE
-router.route('/program/add')
-  // .get(programs.deleteProgram)
-  .get( checkAuth, programs.addProgram)
-  .post( checkAuth, programValidator , programs.storeProgram)
+// router.route('/program/add')
+//   // .get(programs.deleteProgram)
+//   .get( checkAuth, programs.addProgram)
+//   .post( checkAuth, programValidator , programs.storeProgram)
 
 router.route('/program/:universityId/:programId')  
   .get(checkAuth , programs.getProgramById)
@@ -57,7 +82,7 @@ router.route('/program/:universityId/:programId')
 router.route('/verify_account/:verificationCode')  
   .get(users.verifyAccount)
 
-router.route('/forgotpassword')  
+router.route('/admin/forgotpassword')  
   .get(  users.forgotPassword)
   .post(signinValidator, users.updatePassword)
 

@@ -18,7 +18,7 @@
       <div class="alert alert-danger">{{error_message}}</div>
     {{/if}}
 
-    <form action="/university/update/{{universityData.id}}" method="POST">
+    <form action="/admin/university/update/{{universityData.id}}" method="POST">
     <div class="form-group">
       <label for="universityName"> University Name</label>
       <input type="text" name="universityName" value="{{universityData.universityName}}" class="form-control" id="universityName">
