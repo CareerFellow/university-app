@@ -6,32 +6,34 @@
       </div>
     </div>
   </div>
-  <div class="form-wrapper">  
+  <div class="form-wrapper">
     {{#if success_message }}
-      <div class="alert alert-success">{{success_message}}</div>
-    {{/if}}
-    {{#if error_message}}
-      <div class="alert alert-danger">{{error_message}}</div>
+    <div class="alert alert-success">{{success_message}}</div>
+    {{/if}} {{#if error_message}}
+    <div class="alert alert-danger">{{error_message}}</div>
     {{/if}}
 
-  <form action="/admin/signin" method="POST"> 
-    <div class="form-group">
-          {{#if errors.username}}
-            <span class="red">  {{errors.username.msg}} </span>
-          {{/if}}
-      <input type="text" name="username" value="{{users.username}}" class="form-control" id="username" placeholder="Username">
-    </div>
+    <form action="/admin/signin" method="POST" id="siginForm">
+      <div class="form-group">
+        {{#if errors.username}}
+        <span class="red"> {{errors.username.msg}} </span>
+        {{/if}}
+        <input type="text" name="username" value="{{users.username}}" class="form-control" id="username" placeholder="Username">
+      </div>
 
-    <div class="form-group">
-          {{#if errors.password}}
-            <span class="red">  {{errors.password.msg}} </span>
-          {{/if}}
-      <input type="password" name="password" value="{{users.password}}" class="form-control" id="password" placeholder="Password">
-    </div>
-    <div>
-      <span><a href="/forgotpassword" class="dark"> Forgot password? </a></span>
-    </div>
-    <button type="submit" class="btn btn-primary signin"> Signin </button>
-  </form>
+      <div class="form-group">
+        {{#if errors.password}}
+        <span class="red"> {{errors.password.msg}} </span>
+        {{/if}}
+        <input type="password" name="password" value="{{users.password}}" class="form-control" id="password" placeholder="Password">
+      </div>
+      <div>
+        <span>
+          <a href="/forgotpassword" class="dark"> Forgot password? </a>
+        </span>
+      </div>
+      <button type="submit" class="btn btn-primary signin"> Signin </button>
+    </form>
+    <script src="../../js/formValidation/signinValidation.js"></script>
   </div>
 </div>
