@@ -1,4 +1,3 @@
-import express from "express";
 var router = require('express-promise-router')();
 
 import home from './../controllers/homeController';
@@ -6,84 +5,72 @@ import universities from "./../controllers/universitiesController";
 import users from './../controllers/usersController';
 import programs from './../controllers/programController';
 
-
-import { addUniValidator , signupValidator, signinValidator, checkAuth, programValidator, forgotPasswordValidator} from '../helpers/validatorHelper';
-import { check, validationResult } from "express-validator/check";
+import {
+  addUniValidator,
+  signupValidator,
+  signinValidator,
+  checkAuth,
+  programValidator,
+} from '../helpers/validatorHelper';
+import {
+  check,
+  validationResult
+} from "express-validator/check";
 import usersController from "./../controllers/usersController";
 import homeController from "./../controllers/homeController";
 
 // Signup and Signin routes
 router.route('/signup')
   .get(home.index)
-  .post(signupValidator,users.signup)
-router.route('/admin/signin')  //working
+  .post(signupValidator, usersController.signup)
+router.route('/admin/signin')
   .get(users.signin)
-  .post(signinValidator , users.login)
+  .post(signinValidator, usersController.login)
 
 // Admin Routes
-router.route('/admin/dashboard') //working
+router.route('/admin/dashboard')
   .get(homeController.dashboard)
 
-router.route('/admin/university/add') //working
-  .get( universities.addUniversity)
-  .post( addUniValidator, universities.storeUniversity)
-router.route('/admin/university/update/:universityId')  //working
+router.route('/admin/university/add')
+  .get(checkAuth, universities.addUniversity)
+  .post(checkAuth, addUniValidator, universities.storeUniversity)
+router.route('/admin/university/update/:universityId')
   .get(checkAuth, universities.showUniversity)
-  .post(checkAuth, addUniValidator, universities.updateUniversity)   
-router.route('/admin/university/delete/:universityId')  
+  .post(checkAuth, addUniValidator, universities.updateUniversity)
+router.route('/admin/university/delete/:universityId')
   .get(checkAuth, universities.deleteUniversity);
-router.route('/admin/university')  //working
-  .get( checkAuth, universities.getUniversities)
+router.route('/admin/university')
+  .get(checkAuth, universities.getUniversities)
   .post(checkAuth, universities.findByName)
 
+router.route('/admin/program/add')
+  .get(checkAuth, programs.addProgram)
+  .post(checkAuth, programValidator, programs.storeProgram)
 
-  router.route('/admin/program/add')  //done
-  .get( checkAuth, programs.addProgram)
-  .post( checkAuth, programValidator , programs.storeProgram)
-
-
-
-  // Main App (Secret)
+// Main App (Secret)
 router.route('/admin/')
-  .get(checkAuth ,users.home)
+  .get(checkAuth, users.home)
 
 // Logout Route
 router.route('/admin/logout')
-  .get(checkAuth , users.logout)
+  .get(checkAuth, users.logout)
 
-  // UNIVERSITY ROUTES
+// UNIVERSITY ROUTES
 // router.route('/university')
 //   .get( checkAuth, universities.getUniversities)
 //   .post(checkAuth, universities.findByName)
 
-// router.route('/university/add')  
-//   .get(checkAuth, universities.addUniversity)
-//   .post(checkAuth, addUniValidator,  universities.storeUniversity)
-
-// router.route('/university/update/:universityId')  
-// .get(checkAuth, universities.showUniversity)
-// .post(checkAuth, universities.updateUniversity)
-
 router.route('/university/:universityId')
   .get(checkAuth, universities.getUniversityById)
 
-// router.route('/university/delete/:universityId')  
-//   .get(checkAuth, universities.deleteUniversity);
+router.route('/program/:universityId/:programId')
+  .get(checkAuth, programs.getProgramById)
 
-  // Program's ROUTE
-// router.route('/program/add')
-//   // .get(programs.deleteProgram)
-//   .get( checkAuth, programs.addProgram)
-//   .post( checkAuth, programValidator , programs.storeProgram)
-
-router.route('/program/:universityId/:programId')  
-  .get(checkAuth , programs.getProgramById)
-
-router.route('/verify_account/:verificationCode')  
+router.route('/verify_account/:verificationCode')
   .get(users.verifyAccount)
 
-router.route('/admin/forgotpassword')  
-  .get(  users.forgotPassword)
+router.route('/admin/forgotpassword')
+  .get(users.forgotPassword)
   .post(signinValidator, users.updatePassword)
 
 export default router;
