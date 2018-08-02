@@ -44,8 +44,8 @@ router.route('/admin/university')
   .post(checkAuth, universities.findByName)
 
 router.route('/admin/program/add')
-  .get(checkAuth, programs.addProgram)
-  .post(checkAuth, programValidator, programs.storeProgram)
+  .get( checkAuth, programs.addProgram)
+  .post( checkAuth, programValidator, programs.storeProgram)
 
 // Main App (Secret)
 router.route('/admin/')
