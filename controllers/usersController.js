@@ -49,7 +49,8 @@ usersController.signin = async (req, res) => {
   if(req.session.user) {
     return res.redirect('/')
   }
-  res.render('signin');
+  // res.render('signin');
+  res.render('pages/users/signin')
 }
 
 usersController.login = async (req, res) => {

@@ -6,7 +6,7 @@ const programs = {};
 
 programs.addProgram = async ( req, res ) => {
   const universities = await University.find({}, {"universityName" : 1})
-  res.render('adminViews/programViews/addProgram' , {universities : universities})
+  res.render('pages/program/addProgram' , {universities : universities})
 }
 
 programs.storeProgram = async (req, res, next) => {

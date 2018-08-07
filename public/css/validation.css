@@ -1,0 +1,32 @@
+#field {
+  margin-left: .5em;
+  float: left
+}
+
+#field,
+label {
+  float: left;
+  font-size: small
+}
+
+br {
+  clear: both
+}
+
+input {
+  border: 1px solid #000;
+  margin-bottom: .5em
+}
+
+input.error {
+  border: 1px solid red
+}
+
+label.error {
+  background: url(images/unchecked.gif) no-repeat;
+}
+
+label.valid {
+  background: url(images/checked.gif) no-repeat;
+  display: block;
+}

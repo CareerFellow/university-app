@@ -12,19 +12,22 @@ universities.index = async (req, res) => {
 }
 
 universities.addUniversity = async (req, res) => {
-  res.render('adminViews/universityViews/addUniversity');
+  // res.render('adminViews/universityViews/addUniversity');
+  res.render('pages/university/addUniversity')
 }
 
 universities.storeUniversity = async (req, res , next) => {
+  console.log('here before error')
   const errors = await validationResult(req);
   const university = matchedData(req);
   if( !errors.isEmpty()) {
-    return res.render('adminViews/universityViews/addUniversity' , { errors : errors.mapped() , university : university });
+    return res.render('pages/university/addUniversity' , { errors : errors.mapped() , university : university });
   }else{
+    console.log('here no error')
     try {
         if(Object.keys(req.files).length === 0 && req.files.constructor === Object)
         {
-          return res.render('adminViews/universityViews/addUniversity' , { logoError : 'Logo is required.' , university: university} )
+          return res.render('pages/university/addUniversity' , { logoError : 'Logo is required.' , university: university} )
         }
         let myfile = req.files.universityLogo;
         let type = req.files.universityLogo.mimetype;
@@ -39,7 +42,7 @@ universities.storeUniversity = async (req, res , next) => {
           await myfile.mv(path);      
           req.flash('success' , 'University is successfully saved.')
         }else {
-          return res.render('adminViews/universityViews/addUniversity' , { logoError : 'Upload a valid image.' , university: university} )
+          return res.render('pages/university/addUniversity' , { logoError : 'Upload a valid image.' , university: university} )
         }
       }catch(error){
         req.flash('error' , error.message);
@@ -56,7 +59,7 @@ universities.getUniversities = async (req , res) => {
     ]);
 
     const pageCount = Math.ceil(itemCount / req.query.limit);
-    res.render('adminViews/universityViews/universities', {
+    res.render('pages/university/universities', {
       allUniversities: results,
       pages: paginate.getArrayPages(req)(3, pageCount, req.query.page)
     });
@@ -74,7 +77,7 @@ universities.showUniversity = async (req, res) => {
       req.flash('error', 'No record found against the given id.')
       return res.redirect('/university');
     }
-    res.render('adminViews/universityViews/updateUniversity' , {universityData : university}); 
+    res.render('pages/university/updateUniversity' , {universityData : university}); 
 }
 
 universities.updateUniversity = async (req, res) =>{
@@ -82,10 +85,10 @@ universities.updateUniversity = async (req, res) =>{
   let isUpdated = await University.findByIdAndUpdate(universityId , req.body);
   if ( !isUpdated ) {
     req.flash('error', 'Couldnt update successfully.');
-    res.redirect('/admin/university/');
+    res.redirect('/admin/university/manage');
   }
   req.flash('success' , 'Successfully updated.');
-  res.redirect('/admin/university');
+  res.redirect('/admin/university/manage');
 }
 
 

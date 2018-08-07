@@ -9,6 +9,6 @@ homeController.index = (req , res) => {
 
 
 homeController.dashboard = (req, res) => {
-  res.json("This is admin dashboard.");
+   res.render('pages/dashboard')
 }
 export default homeController;

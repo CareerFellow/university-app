@@ -1,0 +1,105 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12 card">
+      <div class="card-header">
+        <h3 class="card-title"> Add University </h3>
+      </div>
+      <div class="card-body">
+        {{#if success_message }}
+        <div class="alert alert-success">{{success_message}}</div>
+        {{/if}} {{#if error_message}}
+        <div class="alert alert-danger">{{error_message}}</div>
+        {{/if}}
+        <form action="/admin/university/update/{{universityData.id}}" method="POST" enctype="multipart/form-data" id="addUniversityForm">
+          <div class="row">
+            <div class="col">
+              <div class="form-group">
+                <label for="universityName" class="form-label"> University Name
+                  <span class="form-required"> * </span>
+                </label>
+                <input type="text" class="form-control" name="universityName" id="universityName" value="{{universityData.universityName}}"> {{#if errors.universityName}}
+                <span class="red"> {{errors.universityName.msg}} </span>
+                {{/if}}
+              </div>
+              <div class="form-group">
+                <label for="website" class="form-label"> Website
+                  <span class="form-required"> * </span>
+                </label>
+                <input type="url" class="form-control" value="{{universityData.website}}" name="website" id="website"> {{#if errors.website}}
+                <span class="red"> {{errors.website.msg}} </span>
+                {{/if}}
+              </div>
+              <div class="form-group">
+                <label for="" class="form-label"> About
+                  <span class="form-required"> * </span>
+                </label>
+                <input type="text" name="about" value="{{universityData.about}}" class="form-control" id="about"> {{#if errors.about}}
+                <span class="red"> {{errors.about.msg}} </span>
+                {{/if}}
+              </div>
+              <div class="form-group">
+                <label for="city" class="form-label"> City
+                  <span class="form-required"> * </span>
+                </label>
+                <input type="}}text" value="{{universityData.city}}" class="form-control" name="city" id="city"> {{#if errors.city}}
+                <span class="red"> {{errors.city.msg}} </span>
+                {{/if}}
+              </div>
+              <div class="form-group">
+                <label for="contact" class="form-label"> Contact
+                  <span class="form-required"> * </span>
+                </label>
+                <input type="text" value="{{universityData.contact}}" class="form-control" name="contact" id="contact"> {{#if errors.contact}}
+                <span class="red"> {{errors.contact.msg}} </span>
+                {{/if}}
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-group">
+                <div class="form-label">University Logo </div>
+                <div class="custom-file">
+                  <input type="file" class="custom-file-input" value="{{universityData.logo}}" name="universityLogo" id="universityLogo">
+                  <label class="custom-file-label">Choose file</label>
+                  {{#if logoError }}
+                  <span class="red"> {{logoError}} </span>
+                  {{/if}}
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="email" class="form-label"> Email
+                  <span class="form-required"> * </span>
+                </label>
+                <input type="text" class="form-control" value="{{universityData.email}}" name="email" id="email"> {{#if errors.email}}
+                <span class="red"> {{errors.email.msg}} </span>
+                {{/if}}
+              </div>
+              <div class="form-group">
+                <label for="address" class="form-label"> University Address
+                  <span class="form-required"> * </span>
+                </label>
+                <input type="text" class="form-control" name="address" value="{{universityData.address}}" id="address"> {{#if errors.address}}
+                <span class="red"> {{errors.address.msg}} </span>
+                {{/if}}
+              </div>
+              <div class="form-group">
+                <label for="country" class="form-label"> Country
+                  <span class="form-required"> * </span>
+                </label>
+                <input type="text" value="{{universityData.country}}" class="form-control" name="country" id="country"> {{#if errors.country}}
+                <span class="red"> {{errors.country.msg}} </span>
+                {{/if}}
+              </div>
+            </div>
+          </div>
+      </div>
+      <div class="card-footer">
+        <div class="d-flex">
+          <button type="submit" class="btn btn-primary "> Update University</button>
+        </div>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script src="../../../js/formValidation/addUniversity.js"></script>

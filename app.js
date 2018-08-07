@@ -60,7 +60,9 @@ app.use(paginate.middleware(10, 50))
 app.use("/", route)
 
 app.engine('handlebars', exphbs({
-  defaultLayout: 'main.handlebars'
+  defaultLayout: 'main.handlebars',
+  layoutsDir  : __dirname + '/views/layouts',
+  partialsDir : __dirname + '/views/partials/includes',
 }));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'handlebars');

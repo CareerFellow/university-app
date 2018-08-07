@@ -1,22 +1,64 @@
-<!DOCTYPE html>
-<html>
-  <head>
+<!doctype html>
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous" >
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"> </script>
-    <link rel="stylesheet" href="/css/index.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
-    <link rel="stylesheet" href="https://jqueryvalidation.org/files/demo/site-demos.css">
+<html lang="en" dir="ltr">
 
-    <meta charset="utf-8">
-    <title>University App</title>
-  </head>
-  <body>
-    <div class="container center">
-      {{{body}}}
-    </div>
-  </body>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta http-equiv="Content-Language" content="en" />
+
+	<meta name="msapplication-TileColor" content="#2d89ef">
+	<meta name="theme-color" content="#4188c9">
+
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="mobile-web-app-capable" content="yes">
+	<meta name="HandheldFriendly" content="True">
+	<meta name="MobileOptimized" content="320">
+
+	<link rel="icon" href="./favicon.ico" type="image/x-icon" />
+	<link rel="shortcut icon" type="image/x-icon" href="./favicon.ico" />
+
+	<!-- Generated: 2018-07-23 14:53:31 +0500 -->
+
+	<title>Dashboard</title>
+
+	<!-- Validation -->
+	<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+	<link rel="stylesheet" href="/css/validation.css">
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,500,500i,600,600i,700,700i&amp;subset=latin-ext">
+	<script src="/js/require.min.js"></script>
+
+	<script src="/js/dashboard.js"></script>
+
+	
+
+	<!-- Dashboard Core -->
+	<link href="/css/dashboard.css" rel="stylesheet" />
+	<link href="/css/universityapp.css" rel="stylesheet" />
+
+
+</head>
+
+
+<body class="">
+	<div class="page">
+		<div class="page-main">
+			{{!-- Header Start --}} {{> header }} {{!-- Header Ends --}} {{!-- Body Starts --}}
+			<div class="my-3 my-md-5">
+				{{{body}}}
+			</div>
+			{{!-- Body Ends --}}
+		</div>
+
+		{{> footer }}
+
+	</div>
+</body>
+
 </html>
