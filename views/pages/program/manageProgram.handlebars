@@ -1,0 +1,84 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12 card">
+      <div class="card-header">
+        <h3 class="card-title"> Manage Programs </h3>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table card-table table-vcenter text-nowrap">
+            <thead>
+              <tr>
+                <th class="w-1">NO.</th>
+                <th>Name</th>
+                <th>University Name</th>
+                <th>Department Name</th>
+                <th>Degree</th>
+                <th>Duration</th>
+                <th>Program Type</th>
+                <th>Credit Hours</th>
+                <th colspan="2">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each universities}} {{#each this.programs}}
+              <tr>
+                <td> {{inc @index}}</td>
+                <td>{{this.programName}}</td>
+                <td>{{../this.universityName}}</td>
+                <td>{{this.departmentName}}</td>
+                <td>{{this.degree}}</td>
+                <td>{{this.duration}}</td>
+                <td>{{this.programType}}</td>
+                <td>{{this.creditHours}}</td>
+                <td class="w-1">
+                  <a href="" class="icon">
+                    <i class="fe fe-edit"></i>
+                  </a>
+                </td>
+                <td>
+                  <a href="" class="icon">
+                    <i class="fe fe-delete"></i>
+                  </a>
+                </td>
+              </tr>
+              {{/each}} {{/each}}
+
+              <tr>
+                <td> 1 </td>
+                <td>BSCS</td>
+                <td> LUMS </td>
+                <td> Dept. of Computer Science </td>
+                <td> Bachelor's </td>
+                <td> 4 Years</td>
+                <td>Morning</td>
+                <td>48</td>
+                <td class="w-1">
+                  <a href="" class="icon">
+                    <i class="fe fe-edit"></i>
+                  </a>
+                </td>
+                <td>
+                  <a href="" class="icon">
+                    <i class="fe fe-delete"></i>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="d-flex">
+          <ul class="pagination pagination-pager" style="margin-bottom: 0px">
+            {{#if pages }} {{#each pages }}
+            <li class="page-item">
+              <a href="{{this.url}}" class="page-link"> {{this.number}} </a>
+            </li>
+            {{/each}} {{/if}}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

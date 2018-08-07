@@ -1,6 +1,7 @@
 import University from '../models/university';
 import {check , validationResult } from "express-validator/check";
 import { matchedData } from 'express-validator/filter';
+import paginate from 'express-paginate';
 
 const programs = {};
 
@@ -59,6 +60,28 @@ programs.getProgramById = async ( req, res ) => {
   )
   // res.send(program)
   res.render('adminViews/programViews/programDetail' , { program : program });
+}
+
+programs.getPrograms = async (req, res) => {
+
+  try{
+    const [ results , itemCount ] = await Promise.all([
+      University.find({}).limit(req.query.limit).skip(req.skip).lean().exec(),
+      University.count({})
+    ]);
+
+    const pageCount = Math.ceil(itemCount / req.query.limit);
+
+    // const universities = await University.find();
+    res.render('pages/program/manageProgram' , {
+       universities : results,
+       pages: paginate.getArrayPages(req)(3, pageCount, req.query.page)
+      })
+  }catch(error){
+    throw Error(error.message)
+  }
+
+  
 }
 
 export default programs;

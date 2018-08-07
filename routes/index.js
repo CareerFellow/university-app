@@ -46,6 +46,8 @@ router.route('/admin/university/manage')
 router.route('/admin/program/add')
   .get( programs.addProgram)
   .post( programValidator, programs.storeProgram)
+router.route('/admin/program/manage')
+  .get(programs.getPrograms)
 
 // Main App (Secret)
 router.route('/admin/')
