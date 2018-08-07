@@ -1,7 +1,7 @@
 
 import User from './../models/User';
 import flash from 'connect-flash';
-
+import paginate from 'express-paginate';
 import { sendWelcomeEmail } from '../services/emailService';
 
 import { check , validationResult } from "express-validator/check";
@@ -131,4 +131,17 @@ usersController.login = async (req, res) => {
       res.redirect('/forgotpassword')
     }
   }
+
+  usersController.getAllUsers = async (req, res) => {
+    const [ results , itemCount ] = await Promise.all([
+      User.find({}).limit(req.query.limit).skip(req.skip).lean().exec(),
+      User.count({})
+    ])
+    const pageCount = Math.ceil(itemCount / req.query.limit);
+    res.render('pages/user/users', {
+      users: results,
+      pages: paginate.getArrayPages(req)(3, pageCount, req.query.page)
+    });
+  }
+
 export default usersController;

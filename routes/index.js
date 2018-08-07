@@ -26,6 +26,9 @@ router.route('/signup')
 router.route('/admin/signin')
   .get(users.signin)
   .post(signinValidator, usersController.login)
+router.route('/admin/user/manage')
+  .get(usersController.getAllUsers)
+
 
 // Admin Routes
 router.route('/admin/dashboard')
@@ -56,6 +59,7 @@ router.route('/admin/')
 // Logout Route
 router.route('/admin/logout')
   .get(checkAuth, users.logout)
+
 
 // UNIVERSITY ROUTES
 // router.route('/university')
