@@ -85,10 +85,10 @@ universities.updateUniversity = async (req, res) =>{
   let isUpdated = await University.findByIdAndUpdate(universityId , req.body);
   if ( !isUpdated ) {
     req.flash('error', 'Couldnt update successfully.');
-    res.redirect('/admin/university/manage');
+    res.redirect(`/admin/university/update/${universityId}`);
   }
   req.flash('success' , 'Successfully updated.');
-  res.redirect('/admin/university/manage');
+  res.redirect(`/admin/university/update/${universityId}`);
 }
 
 
@@ -97,10 +97,10 @@ universities.deleteUniversity = async (req, res ) => {
   let isDeleted = await University.findByIdAndRemove(universityId);
   if ( !isDeleted ) {
     req.flash('error' , 'Couldnt delete record.');
-    res.redirect('/admin/university');
+    res.redirect('/admin/university/manage');
   }
     req.flash('success' , 'Record is successfully deleted.');
-    res.redirect('/admin/university');
+    res.redirect('/admin/university/manage');
 }
 
 universities.findByName = async (req, res) => {

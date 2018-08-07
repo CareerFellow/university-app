@@ -38,7 +38,7 @@ router.route('/admin/university/update/:universityId')
   .get( universities.showUniversity)
   .post( addUniValidator, universities.updateUniversity)
 router.route('/admin/university/delete/:universityId')
-  .get(checkAuth, universities.deleteUniversity);
+  .get(universities.deleteUniversity);
 router.route('/admin/university/manage')
   .get( universities.getUniversities)
   .post( universities.findByName)
