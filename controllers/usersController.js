@@ -50,7 +50,7 @@ usersController.signin = async (req, res) => {
     return res.redirect('/')
   }
   // res.render('signin');
-  res.render('pages/users/signin')
+  res.render('pages/user/signin')
 }
 
 usersController.login = async (req, res) => {
