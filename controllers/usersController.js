@@ -16,7 +16,7 @@ const usersController = {}
 usersController.register = (req , res) => {
   if(req.session.user) {
     console.log('here')
-    return res.redirect('/')
+    return res.redirect('/admin/dashboard')
   }
   res.render('pages/user/signup')
 }
@@ -56,7 +56,7 @@ usersController.signup = async (req, res) => {
 
 usersController.signin = async (req, res) => {
   if(req.session.user) {
-    return res.redirect('/')
+    return res.redirect('/admin/dashboard')
   }
   // res.render('signin');
   res.render('pages/user/signin')
