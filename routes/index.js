@@ -20,7 +20,7 @@ import usersController from "./../controllers/usersController";
 import homeController from "./../controllers/homeController";
 
 // Signup and Signin routes
-router.route('/signup')
+router.route('/admin/signup')
   .get(home.index)
   .post(signupValidator, usersController.signup)
 router.route('/admin/signin')
