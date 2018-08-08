@@ -6,11 +6,7 @@ const {
 import bcrypt from 'bcrypt';
 
 const userSchema = new Schema({
-  firstName: {
-    type: String,
-    required: true
-  },
-  lastName: {
+  completeName: {
     type: String,
     required: true
   },

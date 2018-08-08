@@ -13,20 +13,29 @@ import crypto from 'crypto';
 
 const usersController = {}
 
+usersController.register = (req , res) => {
+  if(req.session.user) {
+    console.log('here')
+    return res.redirect('/')
+  }
+  res.render('pages/user/signup')
+}
+
+
 usersController.signup = async (req, res) => {
   const errors = validationResult(req);
   if(!errors.isEmpty()) {
     const user = matchedData(req);
-    return res.render('signup' , { errors : errors.mapped() , users : user})
+    return res.render('pages/user/signup' , { errors : errors.mapped() , users : user})
   }else {
     try {
       const email = await User.findOne({email : req.body.email});
       if(email){
-        return res.render('signup' , {users : req.body , emailError : 'Email is already registered.'})
+        return res.render('pages/user/signup' , {users : req.body , emailError : 'Email is already registered.'})
       }
       const username = await User.findOne({username : req.body.username});
       if(username) {
-        return res.render('signup' , {users : req.body , usernameError : 'Username is already registered.'})
+        return res.render('pages/user/signup' , {users : req.body , usernameError : 'Username is already registered.'})
       }
       let verificationCode = crypto.randomBytes(10).toString('hex');
       const newUser = new User(req.body);

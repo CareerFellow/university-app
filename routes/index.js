@@ -21,7 +21,7 @@ import homeController from "./../controllers/homeController";
 
 // Signup and Signin routes
 router.route('/admin/signup')
-  .get(home.index)
+  .get(usersController.register)
   .post(signupValidator, usersController.signup)
 router.route('/admin/signin')
   .get(users.signin)

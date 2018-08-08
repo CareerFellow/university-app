@@ -1,0 +1,73 @@
+<div class="container">
+  <div class="row">
+    <div class="col col-login mx-auto">
+      <div class="text-center mb-6">
+        <img src="./demo/brand/tabler.svg" class="h-6" alt="">
+      </div>
+      {{#if success_message }}
+      <div class="alert alert-success">{{success_message}}</div>
+      {{/if}} {{#if error_message}}
+      <div class="alert alert-danger">{{error_message}}</div>
+      {{/if}} {{#if emailError}}
+      <div class="alert alert-danger"> {{emailError}} </div>
+      {{/if}} {{#if usernameError}}
+      <div class="alert alert-danger"> {{usernameError}} </div>
+      {{/if}}
+
+      <form class="card" action="/admin/signup" method="POST" id="signupForm">
+        <div class="card-body p-6">
+          <div class="card-title">Create new account</div>
+
+          {{!-- <div class="form-group">
+            {{#if errors.firstName}}
+            <span class="red"> {{errors.firstName.msg}} </span>
+            {{/if}}
+            <label class="form-label">First Name</label>
+            <input type="text" class="form-control" value="{{users.firstName}}" placeholder="Enter first name" name="firstName">
+          </div> --}}
+
+          <div class="form-group">
+            {{#if errors.completeName}}
+            <span class="red"> {{errors.completeName.msg}} </span>
+            {{/if}}
+            <label class="form-label">Complete Name</label>
+            <input type="text" name="completeName" value="{{users.completeName}}" class="form-control" id="completeName" placeholder="Complete Name">
+          </div>
+
+          <div class="form-group">
+            {{#if errors.username}}
+            <span class="red"> {{errors.username.msg}} </span>
+            {{/if}}
+            <label class="form-label">Username</label>
+            <input type="text" name="username" value="{{users.username}}" class="form-control" id="username" placeholder="Username">
+          </div>
+
+          <div class="form-group">
+            {{#if errors.email}}
+            <span class="red"> {{ errors.email.msg }} </span>
+            {{/if}}
+            <label class="form-label">Email address</label>
+            <input type="email" name="email" value="{{users.email}}" class="form-control" id="email" placeholder="Enter a valid email">
+          </div>
+
+          <div class="form-group">
+            {{#if errors.password}}
+            <span class="red"> {{errors.password.msg}} </span>
+            {{/if}}
+            <label class="form-label">Password</label>
+            <input type="password" name="password" value="{{users.password}}" class="form-control" id="password" placeholder="Password">
+          </div>
+          <div class="form-footer">
+            <button type="submit" class="btn btn-primary btn-block">Create new account</button>
+          </div>
+        </div>
+      </form>
+
+      <div class="text-center text-muted">
+        Already have account?
+        <a href="./login.html">Sign in</a>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="../../js/formValidation/signupValidation.js"></script>

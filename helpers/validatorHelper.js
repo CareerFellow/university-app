@@ -13,8 +13,7 @@ export const addUniValidator = [
 ];
 
 export const signupValidator = [
-  check('firstName').isLength({min : 1}).withMessage('First name is required.'),
-  check('lastName').isLength({min : 1}).withMessage('Last name is required.'),
+  check('completeName').isLength({min : 1}).withMessage('Complete name is required.'),
   check('username').isLength({min : 6}).withMessage('Username should be at least 6 characters long.'),
   check('email', 'Email is required.').isEmail().withMessage('Enter a valid email.'),
   check('password').isLength({min : 6}).withMessage('Password should be at least 6 characters long.')
