@@ -109,14 +109,15 @@ usersController.login = async (req, res) => {
   }
 
   usersController.forgotPassword = async (req, res) => {
-    res.render('forgotpassword')
+    res.render('pages/user/forgotpassword' )
+
   }
 
   usersController.updatePassword = async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       const user = matchedData(req);
-      return res.render('forgotpassword' , {errors : errors.mapped() , users: user});
+      return res.render('pages/user/forgotpassword' , {errors : errors.mapped() , users: user});
     }else {
       let username = req.body.username;
       let password = req.body.password;
@@ -128,7 +129,7 @@ usersController.login = async (req, res) => {
       }else {
         req.flash('error' , 'User doesnt exist.');
       }
-      res.redirect('/forgotpassword')
+      res.redirect('/admin/forgotpassword')
     }
   }
 
