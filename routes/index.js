@@ -57,8 +57,8 @@ router.route('/admin/')
   .get(checkAuth, users.home)
 
 // Logout Route
-router.route('/admin/logout')
-  .get(checkAuth, users.logout)
+router.route('/admin/signout')
+  .get(checkAuth, users.signout)
 
 
 // UNIVERSITY ROUTES

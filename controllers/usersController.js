@@ -99,7 +99,7 @@ usersController.login = async (req, res) => {
     res.render('home')
   }
 
-  usersController.logout = async(req, res) => {
+  usersController.signout = async(req, res) => {
      req.session.destroy((err) => {
      res.redirect('/admin/signin')
     });
