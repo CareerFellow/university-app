@@ -28,7 +28,8 @@ router.route('/admin/signin')
   .post(signinValidator, usersController.login)
 router.route('/admin/user/manage')
   .get(usersController.getAllUsers)
-
+router.route('/admin/user/delete/:userId')
+  .get(usersController.deleteUser)
 
 // Admin Routes
 router.route('/admin/dashboard')

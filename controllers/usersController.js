@@ -154,4 +154,15 @@ usersController.login = async (req, res) => {
     });
   }
 
+
+  usersController.deleteUser = async (req , res) => {
+    try {
+      let { userId } = req.params;
+      await User.findByIdAndRemove(userId);
+      req.flash('success' , 'Record is successfully deleted.');
+      res.redirect('/admin/user/manage');
+    }catch(e){
+      throw e;
+    }    
+  }
 export default usersController;

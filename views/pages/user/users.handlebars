@@ -1,4 +1,9 @@
 <div class="container">
+  {{#if success_message }}
+  <div class="alert alert-success">{{success_message}}</div>
+  {{/if}} {{#if error_message}}
+  <div class="alert alert-danger">{{error_message}}</div>
+  {{/if}}
   <div class="row">
     <div class="col-12 card">
       <div class="card-header">
@@ -31,7 +36,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="" class="icon">
+                  <a href="/admin/user/delete/{{this._id}}" class="icon">
                     <i class="fe fe-delete"></i>
                   </a>
                 </td>
@@ -44,7 +49,7 @@
       <div class="card-footer">
         <div class="d-flex">
           <ul class="pagination pagination-pager" style="margin-bottom: 0px">
-             {{#if pages }} {{#each pages }}
+            {{#if pages }} {{#each pages }}
             <li class="page-item">
               <a href="{{this.url}}" class="page-link"> {{this.number}} </a>
             </li>
