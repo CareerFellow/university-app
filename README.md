@@ -24,3 +24,6 @@ To get the Node server running locally:
 - [express-paginate](https://github.com/expressjs/express-paginate) - For making pagination
 - [nodemailer](https://github.com/nodemailer/nodemailer) - For sending emails 
 - [dotenv](https://github.com/motdotla/dotenv) - For keeping secret information safe
+- [express-validator](https://github.com/express-validator/express-validator) - For validating input request
+- [express-sessions](https://www.npmjs.com/package/express-sessions) - For storing and managing sessions
+- [bcrypt](https://www.npmjs.com/package/bcrypt) - For hashing password
