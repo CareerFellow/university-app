@@ -1,6 +1,6 @@
 # university-app
 
-> ### A Node (Express + Mongoose) application to help students find Universities and offered programs in their country. 
+> ### An open source Node (Express + Mongoose) application to help students find Universities and offered programs in their country. 
 
 This project is under development and continuous changes. Issues, feature requests, and contributions are welcomed. 
 
