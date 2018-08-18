@@ -27,3 +27,13 @@ To get the Node server running locally:
 - [express-validator](https://github.com/express-validator/express-validator) - For validating input request
 - [express-sessions](https://www.npmjs.com/package/express-sessions) - For storing and managing sessions
 - [bcrypt](https://www.npmjs.com/package/bcrypt) - For hashing password
+
+## Application Structure
+
+- `app.js` - The entry point to our application. This file defines our express server and connects it to MongoDB using mongoose. It also requires the routes and models we'll be using in the application.
+- `controllers/` - This folder contains our controllers 
+- `routes/` - This folder contains the route definitions for our API.
+- `models/` - This folder contains the schema definitions for our Mongoose models.
+- `helpers/` - This folder contains the validation helpers
+- `views/` - This folder all views related to this application
+- `public/` - This folder contains all public resources
