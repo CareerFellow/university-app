@@ -28,6 +28,13 @@ To get the Node server running locally:
 - [express-sessions](https://www.npmjs.com/package/express-sessions) - For storing and managing sessions
 - [bcrypt](https://www.npmjs.com/package/bcrypt) - For hashing password
 
+## Application view
+
+#### Rendering Enging
+[Handlebars](https://handlebarsjs.com/) - We are using handlebars.js as our templating engine because of its simplicity and richness. The Handlebars supports in all major browsers, like, Chrome Firefox, Safari and Internet Explorer. We are planning to switch to react in future.
+#### Design Template
+[tabler](https://tabler.github.io/tabler/) - We are using tabler (an open source HTML template) for our pages. It is a free and open-source HTML Dashboard UI Kit built on Bootstrap 4.
+
 ## Application Structure
 
 - `app.js` - The entry point to our application. This file defines our express server and connects it to MongoDB using mongoose. It also requires the routes and models we'll be using in the application.
