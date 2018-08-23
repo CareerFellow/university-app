@@ -55,7 +55,8 @@ router.route('/admin/program/manage')
 router.route('/admin/program/update/:universityId/:programId')
   .get(programs.showProgram)
   .post(programs.updateProgram)
-
+router.route('/admin/program/delete/:universityId/:programId')
+  .get(programs.deleteProgram)
 
 // Main App (Secret)
 router.route('/admin/')

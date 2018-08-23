@@ -136,8 +136,27 @@ programs.getPrograms = async (req, res) => {
   } catch (error) {
     throw Error(error.message)
   }
+}
 
+programs.deleteProgram = async (req, res) => {
+  let {
+    universityId,
+    programId
+  } = req.params;
 
+  const isDeleted = await University.update({
+    _id: universityId
+  }, {
+    $pull: {
+      programs: {
+        _id: programId
+      }
+    }
+  });
+  if (isDeleted) {
+    req.flash('success', 'Record is successfully deleted.')
+    res.redirect('/admin/program/manage');
+  }
 }
 
 export default programs;

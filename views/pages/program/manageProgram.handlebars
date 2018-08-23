@@ -7,6 +7,11 @@
       <div class="card-body">
         <div class="table-responsive">
           <table class="table card-table table-vcenter text-nowrap">
+            {{#if success_message }}
+            <div class="alert alert-success">{{success_message}}</div>
+            {{/if}} {{#if error_message}}
+            <div class="alert alert-danger">{{error_message}}</div>
+            {{/if}}
             <thead>
               <tr>
                 <th class="w-1">NO.</th>
@@ -37,7 +42,7 @@
                   </a>
                 </td>
                 <td>
-                  <a href="" class="icon">
+                  <a href="/admin/program/delete/{{../this._id}}/{{this._id}}" class="icon">
                     <i class="fe fe-delete"></i>
                   </a>
                 </td>
