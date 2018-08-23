@@ -7,10 +7,10 @@
 	<div class="row">
 		<div class="col-12 card">
 			<div class="card-header">
-				<h3 class="card-title"> Add Program </h3>
+				<h3 class="card-title"> Update Program </h3>
 			</div>
 			<div class="card-body">
-				<form action="/admin/program/add" method="POST" id="addProgramForm">
+				<form action="/admin/program/update/{{program._id}}/{{program.programs.0._id}}" method="POST" id="updateProgramForm">
 					<div class="row">
 						<div class="col">
 							<div class="form-group">
@@ -20,7 +20,7 @@
 								{{#if errors.programName}}
 								<span class="red"> {{errors.programName.msg}} </span>
 								{{/if}}
-								<input type="text" class="form-control" value="{{program.programName}}" name="programName" id="programName">
+								<input type="text" class="form-control" value="{{program.programs.0.programName}}" name="programName" id="programName">
 							</div>
 
 							<div class="form-group">
@@ -30,7 +30,7 @@
 								{{#if errorrs.departmentName}}
 								<span class="red"> {{errors.departmentName.msg}} </span>
 								{{/if}}
-								<input type="text" class="form-control" value="{{program.departmentName}}" name="departmentName" id="departmentName">
+								<input type="text" class="form-control" value="{{program.programs.0.departmentName}}" name="departmentName" id="departmentName">
 							</div>
 
 							<div class="form-group">
@@ -40,7 +40,7 @@
 								{{#if errors.duration}}
 								<span class="red"> {{errors.duration.msg}} </span>
 								{{/if}}
-								<input type="text" value="{{program.duration}}" class="form-control" name="duration" id="duration">
+								<input type="text" value="{{program.programs.0.duration}}" class="form-control" name="duration" id="duration">
 							</div>
 
 							<div class="form-group">
@@ -50,7 +50,7 @@
 								{{#if errors.totalFee}}
 								<span class="red"> {{errors.totalFee.msg}} </span>
 								{{/if}}
-								<input type="text" class="form-control" value="{{program.totalFee}}" name="totalFee" id="totalFee">
+								<input type="text" class="form-control" value="{{program.programs.0.totalFee}}" name="totalFee" id="totalFee">
 							</div>
 
 							<div class="form-group">
@@ -60,7 +60,7 @@
 								{{#if errors.creditHours}}
 								<span class="red"> {{errors.creditHours.msg}} </span>
 								{{/if}}
-								<input type="text" class="form-control" value="{{program.creditHours}}" name="creditHours" id="creditHours">
+								<input type="text" class="form-control" value="{{program.programs.0.creditHours}}" name="creditHours" id="creditHours">
 							</div>
 
 							<div class="form-group">
@@ -70,7 +70,7 @@
 								{{#if errors.applicationDate}}
 								<span class="red"> {{errors.applicationDate.msg}} </span>
 								{{/if}}
-								<input type="date" class="form-control" value="{{program.applicationDate}}" name="applicationDate" id="applicationDate">
+								<input type="date" class="form-control" value="{{program.programs.0.applicationDate}}" name="applicationDate" id="applicationDate">
 							</div>
 
 							<div class="form-group">
@@ -80,7 +80,8 @@
 								{{#if errors.admissionDecisionDate}}
 								<span class="red"> {{errors.admissionDecisionDate.msg}} </span>
 								{{/if}}
-								<input type="date" class="form-control" value="{{program.admissionDecisionDate}}" name="admissionDecisionDate" id="admissionDecisionDate">
+								<input type="date" class="form-control" value="{{program.programs.0.admissionDecisionDate}}" name="admissionDecisionDate"
+								 id="admissionDecisionDate">
 							</div>
 						</div>
 						<div class="col">
@@ -91,7 +92,7 @@
 								{{#if errors.universityName}}
 								<span class="red"> {{errors.universityName.msg}} </span>
 								{{/if}}
-								<select name="universityName" id="universityName" class="form-control custom-select">
+								<select name="universityName" id="universityName" class="form-control custom-select" disabled>
 									{{#each universities }}
 									<option value="{{this._id}}" {{#if_equal ../universityId this._id}} selected {{/if_equal}}>{{this.universityName}}
 									</option>
@@ -106,9 +107,9 @@
 								<span class="red"> {{errors.degree.msg}} </span>
 								{{/if}}
 								<select name="degree" id="degree" class="form-group custom-select">
-									<option value="BS"> Bachelor's </option>
-									<option value="MS"> Master's</option>
-									<option value="PHD"> PHD</option>
+									<option value="BS" {{#if_equal program.programs.0.degree "BS" }} selected {{/if_equal}}> Bachelor's </option>
+									<option value="MS" {{#if_equal program.programs.0.degree "MS" }} selected {{/if_equal}}> Master's</option>
+									<option value="PHD" {{#if_equal program.programs.0.degree "PHD"}} selected {{/if_equal}}> PHD</option>
 								</select>
 							</div>
 							<div class="form-group">
@@ -118,7 +119,7 @@
 								{{#if errors.entryRequirement}}
 								<span class="red"> {{errors.entryRequirement.msg}} </span>
 								{{/if}}
-								<input type="text" class="form-control" value="{{program.entryRequirement}}" name="entryRequirement" id="entryRequirement">
+								<input type="text" class="form-control" value="{{program.programs.0.entryRequirement}}" name="entryRequirement" id="entryRequirement">
 							</div>
 							<div class="form-group">
 								<label for="" class="form-label"> Program Type
@@ -128,8 +129,8 @@
 								<span class="red"> {{errors.programType.msg}} </span>
 								{{/if}}
 								<select name="programType" id="programType" class="form-control custom-select">
-									<option value="M"> Morning </option>
-									<option value="E"> Evening</option>
+									<option value="M" {{#if_equal program.programs.0.programType "M" }} selected {{/if_equal}}> Morning </option>
+									<option value="E" {{#if_equal program.programs.0.programType "E" }} selected {{/if_equal}}> Evening</option>
 								</select>
 							</div>
 							<div class="form-group">
@@ -139,7 +140,7 @@
 								{{#if errors.entryTestDate}}
 								<span class="red"> {{errors.entryTestDate.msg}} </span>
 								{{/if}}
-								<input type="date" value="{{program.entryTestDate}}" class="form-control" name="entryTestDate" id="entryTestDate">
+								<input type="date" class="form-control" value="{{program.programs.0.entryTestDate}}" name="entryTestDate" id="entryTestDate">
 
 							</div>
 							<div class="form-group">
@@ -149,7 +150,8 @@
 								{{#if errors.documentSubmissionDate}}
 								<span class="red"> {{errors.documentSubmissionDate.msg}} </span>
 								{{/if}}
-								<input type="date" class="form-control" value="{{program.documentSubmissionDate}}" name="documentSubmissionDate" id="documentSubmissionDate">
+								<input type="date" class="form-control" value="{{program.programs.0.documentSubmissionDate}}" name="documentSubmissionDate"
+								 id="documentSubmissionDate">
 							</div>
 
 							<div class="form-group">
@@ -159,8 +161,8 @@
 								<span class="red"> {{errors.financialAid.msg}} </span>
 								{{/if}}
 								<select name="financialAid" id="financialAid" class="form-control">
-									<option value="0"> NO </option>
-									<option value="1"> YES </option>
+									<option value="0" {{#if_equal program.programs.0.financialAid "0" }} selected {{/if_equal}}> NO </option>
+									<option value="1" {{#if_equal program.programs.0.financialAid "1" }} selected {{/if_equal}}> YES </option>
 								</select>
 							</div>
 						</div>
@@ -168,7 +170,7 @@
 			</div>
 			<div class="card-footer">
 				<div class="d-flex">
-					<button type="submit" class="btn btn-primary "> Add Program </button>
+					<button type="submit" class="btn btn-primary "> Update Program </button>
 				</div>
 			</div>
 			</form>
