@@ -10,20 +10,18 @@
       <h2> What do you plan to study?</h2>
     </div>
     <div class="row banner-search">
-
       <div class="col-sm-9">
         <div class="form-group">
-          <input name="" id="" class="form-control input-lg">
+          <form action="">
+            <input name="" id="" class="form-control input-lg">
         </div>
       </div>
       <div class="col-sm-3">
         <div class="form-group">
           <button class="btn btn-lg btn-search"> SEARCH UNIVERSITIES</button>
+          </form>
         </div>
-
       </div>
-
-
     </div>
   </div>
 </div>
@@ -46,56 +44,18 @@
   </div>
 
   <div class="row">
+    {{#each universities}}
     <div class="col-sm-2 cpl-xs-6 text-center" style="margin: 0px 17px;">
       <a href="">
         <div class="img-thumbnail">
-          <img src="/images/public-images/NU_Logo.png" alt="" class="img-responsive">
+          <img src="{{this.logo}}" alt="" class="img-responsive">
         </div>
         <h4 style="margin-top: 14px">
-          <strong> NUCES</strong>
+          <strong> {{this.universityName}}</strong>
         </h4>
       </a>
     </div>
-    <div class="col-sm-2 cpl-xs-6 text-center" style="margin: 0px 18px;">
-      <a href="">
-        <div class="img-thumbnail">
-          <img src="/images/public-images/NU_Logo.png" alt="" class="img-responsive">
-        </div>
-        <h4 style="margin-top: 14px">
-          <strong> NUCES</strong>
-        </h4>
-      </a>
-    </div>
-    <div class="col-sm-2 cpl-xs-6 text-center" style="margin: 0px 18px;">
-      <a href="">
-        <div class="img-thumbnail">
-          <img src="/images/public-images/NU_Logo.png" alt="" class="img-responsive">
-        </div>
-        <h4 style="margin-top: 14px">
-          <strong> NUCES</strong>
-        </h4>
-      </a>
-    </div>
-    <div class="col-sm-2 cpl-xs-6 text-center" style="margin: 0px 18px;">
-      <a href="">
-        <div class="img-thumbnail">
-          <img src="/images/public-images/NU_Logo.png" alt="" class="img-responsive">
-        </div>
-        <h4 style="margin-top: 14px">
-          <strong> NUCES</strong>
-        </h4>
-      </a>
-    </div>
-    <div class="col-sm-2 cpl-xs-6 text-center" style="margin: 0px 18px;">
-      <a href="">
-        <div class="img-thumbnail">
-          <img src="/images/public-images/NU_Logo.png" alt="" class="img-responsive">
-        </div>
-        <h4 style="margin-top: 14px">
-          <strong> NUCES</strong>
-        </h4>
-      </a>
-    </div>
+    {{/each}}
   </div>
 
   <div class="clearfix"></div>

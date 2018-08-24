@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container dashboard-top">
   <div class="row">
     <div class="col-12 card">
       <div class="card-header">
@@ -17,7 +17,8 @@
                 <label for="universityName" class="form-label"> University Name
                   <span class="form-required"> * </span>
                 </label>
-                <input type="text" class="form-control" name="universityName" id="universityName" value="{{university.universityName}}"> {{#if errors.universityName}}
+                <input type="text" class="form-control" name="universityName" id="universityName" value="{{university.universityName}}">                {{#if
+                errors.universityName}}
                 <span class="red"> {{errors.universityName.msg}} </span>
                 {{/if}}
               </div>
@@ -25,7 +26,8 @@
                 <label for="website" class="form-label"> Website
                   <span class="form-required"> * </span>
                 </label>
-                <input type="url" class="form-control" value="{{university.website}}" name="website" id="website"> {{#if errors.website}}
+                <input type="url" class="form-control" value="{{university.website}}" name="website" id="website"> {{#if
+                errors.website}}
                 <span class="red"> {{errors.website.msg}} </span>
                 {{/if}}
               </div>
@@ -49,7 +51,8 @@
                 <label for="contact" class="form-label"> Contact
                   <span class="form-required"> * </span>
                 </label>
-                <input type="text" value="{{university.contact}}" class="form-control" name="contact" id="contact"> {{#if errors.contact}}
+                <input type="text" value="{{university.contact}}" class="form-control" name="contact" id="contact"> {{#if
+                errors.contact}}
                 <span class="red"> {{errors.contact.msg}} </span>
                 {{/if}}
               </div>
@@ -77,7 +80,8 @@
                 <label for="address" class="form-label"> University Address
                   <span class="form-required"> * </span>
                 </label>
-                <input type="text" class="form-control" name="address" value="{{university.address}}" id="address"> {{#if errors.address}}
+                <input type="text" class="form-control" name="address" value="{{university.address}}" id="address"> {{#if
+                errors.address}}
                 <span class="red"> {{errors.address.msg}} </span>
                 {{/if}}
               </div>
@@ -85,7 +89,8 @@
                 <label for="country" class="form-label"> Country
                   <span class="form-required"> * </span>
                 </label>
-                <input type="text" value="{{university.country}}" class="form-control" name="country" id="country"> {{#if errors.country}}
+                <input type="text" value="{{university.country}}" class="form-control" name="country" id="country"> {{#if
+                errors.country}}
                 <span class="red"> {{errors.country.msg}} </span>
                 {{/if}}
               </div>

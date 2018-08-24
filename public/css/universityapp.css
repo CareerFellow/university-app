@@ -141,3 +141,11 @@ banner-img:before {
   padding: 0px;
   text-align: center;
 }
+
+.dashboard-top {
+  margin-top: 60px;
+}
+
+.img-thumbnail img {
+  max-height: 150px;
+}

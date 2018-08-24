@@ -1,3 +1,5 @@
+import University from '../models/university';
+
 const homeController = {}
 
 homeController.dashboard = (req, res) => {
@@ -5,6 +7,9 @@ homeController.dashboard = (req, res) => {
 }
 
 homeController.index = async (req, res) => {
-  res.render('pages/index')
+  const universities = await University.find().limit(5);
+  res.render('pages/index', {
+    universities: universities
+  })
 }
 export default homeController;
