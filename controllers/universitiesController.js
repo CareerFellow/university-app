@@ -150,4 +150,8 @@ universities.getUniversityById = async (req, res) => {
   })
 }
 
+
+// Public Routes Functions
+
+
 export default universities;

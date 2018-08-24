@@ -1,4 +1,3 @@
-
 .card-img {
   margin-left: 24px;
   margin-top: 22px;
@@ -14,7 +13,15 @@
   max-width: 152px;
 }
 
+/* new */
 
+#headerMenuCollapse {
+  background-color: #ff9800;
+}
+
+#headerMenuCollapse .nav-tabs {
+  color: white;
+}
 
 .banner-img {
   height: 300px;
@@ -22,8 +29,7 @@
   background-size: cover;
   background-position: center;
   color: white;
-  box-shadow: inset 0 0 0 1000px rgba(0,0,0,.4);
-
+  box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, .4);
 }
 
 .banner-img .university-logo {
@@ -48,5 +54,90 @@ li {
 }
 
 .red {
-  color:red;
+  color: red;
+}
+
+banner-img:before {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.banner-title {
+  font-family: "Marck Script", cursive;
+  font-size: 4em;
+}
+
+.input-lg {
+  height: 45px;
+  padding: 10px 16px;
+  font-size: 17px;
+  line-height: 1.3333333;
+  border-radius: 6px;
+}
+
+.banner-search .input-lg {
+  height: 46px;
+  line-height: 46px;
+  margin-top: 7px;
+}
+
+.btn-search {
+  color: #fff;
+  background-color: #ef6c00;
+  border-color: #d66000;
+  margin-top: 7px;
+  border-radius: 6px;
+}
+
+.banner-search {
+  width: 70%;
+  margin: auto;
+}
+
+.top-universities {
+  margin-top: 35px;
+  margin-bottom: 20px;
+}
+
+.top-universities a {
+  color: #ef6c00;
+  text-decoration: none;
+}
+
+.btn-top-universities {
+  color: #fff;
+  background-color: #ff9800;
+  border-color: #e68900;
+}
+
+.container {
+  max-width: 1145px;
+}
+
+/* .img-thumbnail {
+  padding: 4px;
+  line-height: 1.42857143;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  -webkit-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  display: inline-block;
+  max-width: 100%;
+  height: auto;
+} */
+
+.foot-top {
+  margin-top: 75px;
+  background-color: #f1f1f1;
+}
+
+.foot-top li {
+  padding: 0px;
+  text-align: center;
 }

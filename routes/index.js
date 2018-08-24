@@ -67,7 +67,13 @@ router.route('/admin/signout')
   .get(checkAuth, users.signout)
 
 
-// UNIVERSITY ROUTES
+// UNIVERSITY PUBLIC ROUTES
+
+router.route('/')
+  .get(homeController.index);
+
+
+
 // router.route('/university')
 //   .get( checkAuth, universities.getUniversities)
 //   .post(checkAuth, universities.findByName)
