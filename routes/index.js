@@ -74,7 +74,7 @@ router.route('/')
 
 router.route('/universities')
   .get(universities.getAll)
-  .get(universities.searchByKeywords)
+  .post(universities.searchByKeywords)
 
 
 // router.route('/university')

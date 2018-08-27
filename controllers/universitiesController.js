@@ -160,10 +160,28 @@ universities.searchByKeywords = async () => {
 universities.getAll = async (req, res) => {
 
   const universities = await University.find({});
-  // res.send(universities)
   res.render('pages/university/publicUniversities', {
     universities: universities
   });
 }
 
+universities.searchByKeywords = async (req, res) => {
+
+  const program = req.body.universitySearch;
+  const universities = await University.find({
+    "programs.programName": {
+      "$regex": program,
+      "$options": "i"
+    }
+  });
+
+  if (!universities.length) {
+    req.flash('error', 'No record found.')
+  }
+
+  res.render('pages/university/publicUniversities', {
+    universities: universities
+  })
+
+}
 export default universities;

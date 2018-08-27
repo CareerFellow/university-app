@@ -21,10 +21,12 @@
 <div class="my-3 my-md-5">
   <div class="container">
     <div class="page-title">
-      <h1> Universities in Pakistan for Computer Science</h1>
+      <h1> Universities in Pakistan </h1>
       <h5> Read Universities, courses, eligibility and more</h5>
     </div>
-    <hr>
+    <hr> {{#if universitie}} {{/if}}
+
+
     <div class="row row-cards row-deck">
       {{#each universities}}
       <div class="col-lg-6">
@@ -44,6 +46,8 @@
           </div>
         </div>
       </div>
+      {{else}}
+      <div class="red">No record found.</div>
       {{/each}}
 
     </div>
