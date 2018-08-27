@@ -153,5 +153,17 @@ universities.getUniversityById = async (req, res) => {
 
 // Public Routes Functions
 
+universities.searchByKeywords = async () => {
+
+}
+
+universities.getAll = async (req, res) => {
+
+  const universities = await University.find({});
+  // res.send(universities)
+  res.render('pages/university/publicUniversities', {
+    universities: universities
+  });
+}
 
 export default universities;

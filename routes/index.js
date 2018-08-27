@@ -72,6 +72,9 @@ router.route('/admin/signout')
 router.route('/')
   .get(homeController.index);
 
+router.route('/universities')
+  .get(universities.getAll)
+  .get(universities.searchByKeywords)
 
 
 // router.route('/university')

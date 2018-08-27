@@ -1,0 +1,51 @@
+<div class="banner-img short" style="background-image: url('/images/public-images/university-header.jpg'); height: 400px;">
+  <div class="col-sm-11 col-sm-offset-1" style="align-self: center; margin: auto">
+
+    <div class="row banner-search">
+
+      <div class="col-sm-9">
+        <div class="form-group">
+          <input name="" id="" placeholder="Search Programs" class="form-control input-lg">
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="form-group">
+          <button class="btn btn-lg btn-search"> SEARCH UNIVERSITIES</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="my-3 my-md-5">
+  <div class="container">
+    <div class="page-title">
+      <h1> Universities in Pakistan for Computer Science</h1>
+      <h5> Read Universities, courses, eligibility and more</h5>
+    </div>
+    <hr>
+    <div class="row row-cards row-deck">
+      {{#each universities}}
+      <div class="col-lg-6">
+        <div class="card card-aside">
+          <div class="card-img">
+            <img src="{{this.logo}}" height="160px" class="university-logo" alt="">
+          </div>
+          <div class="card-body d-flex flex-column">
+            <h4>
+              <a href="#">{{this.universityName}}</a>
+            </h4>
+            <span> {{this.address}}, {{this.city}} </span>
+            <br>
+            <span> Private University </span>
+            <span> 47% acceptance rate </span>
+            <a href=""> View Programs</a>
+          </div>
+        </div>
+      </div>
+      {{/each}}
+
+    </div>
+  </div>
+</div>

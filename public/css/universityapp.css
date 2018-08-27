@@ -153,3 +153,12 @@ banner-img:before {
 .img-thumbnail img {
   max-height: 150px;
 }
+
+h2,
+h3 {
+  font-weight: 400;
+}
+
+.short {
+  height: 240px !important;
+}
