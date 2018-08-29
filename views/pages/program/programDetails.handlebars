@@ -1,0 +1,67 @@
+<div class="my-3 my-md-5">
+  <div class="container program-details ">
+    <div class="row">
+      <div class="col-sm-2">
+        <img src="{{program.logo}}" class="img-responsive img-circle" alt="">
+      </div>
+      <div class="col-sm-6">
+        <h2> {{program.programs.0.programName}}</h2>
+        <h4> {{program.universityName}} </h4>
+        <h4> Department: {{program.programs.0.departmentName}} </h4>
+        <span> {{program.website}} </span>
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-sm-2">
+        <h5> Tution Fee</h5>
+        <p> {{program.programs.0.totalFee}} PKR</p>
+      </div>
+      <div class="col-sm-2">
+        <h5> Degree</h5>
+        <p> {{program.programs.0.degree}} </p>
+      </div>
+      <div class="col-sm-2">
+        <h5> Duration </h5>
+        <p> {{program.programs.0.duration}}</p>
+      </div>
+      <div class="col-sm-2">
+        <h5> Program Type </h5>
+        <p> {{#if_equal program.programs.0.programType 'M'}} Morning {{else}} Evening {{/if_equal}}</p>
+      </div>
+      <div class="col-sm-2">
+        <h5> Credit Hours </h5>
+        <p> {{program.programs.0.creditHours}}</p>
+      </div>
+      <div class="col-sm-2">
+        <h5> Financial Aid </h5>
+        <p> {{#if program.programs.0.financialAid}} Yes {{else}} No {{/if}}</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <div>
+          <h5> Entry Requirement </h5>
+          <p>{{program.programs.0.entryRequirement}}
+          </p>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <h5> Entry test date</h5>
+        <p>{{dateFormat program.programs.0.entryTestDate "MMMM Do, YYYY"}}</p>
+      </div>
+      <div class="col-sm-6">
+        <h5> Documentation Submission Date </h5>
+        <p> {{dateFormat program.programs.0.documentSubmissionDate "MMMM Do, YYYY"}} </p>
+      </div>
+      <div class="col-sm-6">
+        <h5> Application Date </h5>
+        <p>{{dateFormat program.programs.0.applicationDate "MMMM Do, YYYY"}}</p>
+      </div>
+      <div class="col-sm-6">
+        <h5> Admission Descision Date </h5>
+        <p>{{dateFormat program.programs.0.admissionDecisionDate "MMMM Do, YYYY"}}</p>
+      </div>
+    </div>
+  </div>
+</div>

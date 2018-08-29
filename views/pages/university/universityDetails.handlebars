@@ -23,7 +23,7 @@
   <div class="row">
     {{#each university.programs}}
     <div class="col-md-6" style="margin-bottom: 12px">
-      <a href=""> {{this.programName}} </a>
+      <a href="/program/{{../university._id}}/{{this._id}}"> {{this.programName}} </a>
       <div> Deadline : {{dateFormat this.applicationDate "MMMM Do, YYYY"}} </div>
     </div>
     {{/each}}

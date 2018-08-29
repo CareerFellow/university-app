@@ -82,12 +82,15 @@ router.route('/university/:universityId')
 router.route('/programs')
   .get(programs.getAll)
   .post(programs.getProgramByKeywords)
-
-router.route('/university/:universityId')
-  .get(checkAuth, universities.getUniversityById)
-
 router.route('/program/:universityId/:programId')
-  .get(checkAuth, programs.getProgramById)
+  .get(programs.getDetails)
+
+
+// router.route('/university/:universityId')
+//   .get(checkAuth, universities.getUniversityById)
+
+// router.route('/program/:universityId/:programId')
+//   .get(checkAuth, programs.getProgramById)
 
 router.route('/verify_account/:verificationCode')
   .get(users.verifyAccount)

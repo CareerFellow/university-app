@@ -198,10 +198,32 @@ programs.getProgramByKeywords = async (req, res) => {
       }
     }
   }]);
-  // res.send(fPrograms);
   res.render('pages/program/programs', {
     programs: filteredPrograms
   })
 };
+
+programs.getDetails = async (req, res) => {
+  let {
+    universityId
+  } = req.params;
+  let {
+    programId
+  } = req.params;
+
+  const program = await University.findOne({
+    '_id': universityId,
+    'programs._id': programId
+  }, {
+    'logo': 1,
+    'universityName': 1,
+    'website': 1,
+    'programs.$': 1
+  })
+
+  res.render('pages/program/programDetails', {
+    program: program
+  });
+}
 
 export default programs;
