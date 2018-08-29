@@ -75,13 +75,13 @@ router.route('/')
 router.route('/universities')
   .get(universities.getAll)
   .post(universities.searchByKeywords)
+router.route('/university/:universityId')
+  .get(universities.getDetails)
+
 
 router.route('/programs')
   .get(programs.getAll)
   .post(programs.getProgramByKeywords)
-// router.route('/university')
-//   .get( checkAuth, universities.getUniversities)
-//   .post(checkAuth, universities.findByName)
 
 router.route('/university/:universityId')
   .get(checkAuth, universities.getUniversityById)
