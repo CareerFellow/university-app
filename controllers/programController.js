@@ -128,7 +128,6 @@ programs.getPrograms = async (req, res) => {
 
     const pageCount = Math.ceil(itemCount / req.query.limit);
 
-    // const universities = await University.find();
     res.render('pages/program/manageProgram', {
       universities: results,
       pages: paginate.getArrayPages(req)(3, pageCount, req.query.page)
@@ -158,5 +157,23 @@ programs.deleteProgram = async (req, res) => {
     res.redirect('/admin/program/manage');
   }
 }
+
+
+// Publics routes
+
+programs.getAll = async (req, res) => {
+  const programs = await University.find({}, {
+    'universityName': 1,
+    'city': 1,
+    'logo': 1,
+    'programs': 1
+  });
+
+  res.render('pages/program/programs', {
+    programs: programs
+  })
+}
+
+
 
 export default programs;

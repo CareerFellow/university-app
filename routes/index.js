@@ -76,6 +76,8 @@ router.route('/universities')
   .get(universities.getAll)
   .post(universities.searchByKeywords)
 
+router.route('/programs')
+  .get(programs.getAll)
 
 // router.route('/university')
 //   .get( checkAuth, universities.getUniversities)

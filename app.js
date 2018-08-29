@@ -14,8 +14,7 @@ import mongoose from "mongoose";
 import route from "./routes/";
 
 mongoose.connect(
-  "mongodb://localhost:27017/university-app",
-  {
+  "mongodb://localhost:27017/university-app", {
     useNewUrlParser: true
   }
 );
@@ -23,11 +22,14 @@ mongoose.connect(
 mongoose.Promise = global.Promise;
 
 // Helper function to increment index value for foreach loop.
-Handlebars.registerHelper("inc", function(value, options) {
+Handlebars.registerHelper("inc", function (value, options) {
   return parseInt(value) + 1;
 });
 
-Handlebars.registerHelper("if_equal", function(a, b, opts) {
+// Helper to format date
+Handlebars.registerHelper('dateFormat', require('handlebars-dateformat'));
+
+Handlebars.registerHelper("if_equal", function (a, b, opts) {
   if (a == b) {
     return opts.fn(this);
   } else {
