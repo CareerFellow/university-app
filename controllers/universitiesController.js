@@ -153,9 +153,6 @@ universities.getUniversityById = async (req, res) => {
 
 // Public Routes Functions
 
-universities.searchByKeywords = async () => {
-
-}
 
 universities.getAll = async (req, res) => {
 
