@@ -5,7 +5,7 @@
       <div class="col-sm-9">
         <div class="form-group">
           <form method="POST" action="/programs">
-            <input name="programSearch" id="programSearch" placeholder="Search universities offering a degree" class="form-control input-lg">
+            <input name="programSearch" id="programSearch" placeholder="Search program by keyword e.g. Pharmacy, CS, Business..." class="form-control input-lg">
         </div>
       </div>
       <div class="col-sm-3">
@@ -47,8 +47,7 @@
           </div>
         </div>
       </div>
-      {{/each}} {{else}}
-      <div class="red">No record found.</div>
+      {{/each}}
       {{/each}}
     </div>
   </div>

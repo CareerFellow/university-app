@@ -6,7 +6,8 @@
       <div class="col-sm-9">
         <div class="form-group">
           <form method="POST" action="/universities">
-            <input name="universitySearch" id="universitySearch" placeholder="Search universities offering a degree" class="form-control input-lg">
+            <input name="universitySearch" id="universitySearch" placeholder="Enter program keyword to find relevant University e.g Arts or Business"
+              class="form-control input-lg">
         </div>
       </div>
       <div class="col-sm-3">
@@ -26,8 +27,7 @@
       <h1> Universities in Pakistan </h1>
       <h5> Read Universities, courses, eligibility and more</h5>
     </div>
-    <hr> {{#if universitie}} {{/if}}
-
+    <hr> 
 
     <div class="row row-cards row-deck">
       {{#each universities}}
