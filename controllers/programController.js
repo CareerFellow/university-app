@@ -174,6 +174,34 @@ programs.getAll = async (req, res) => {
   })
 }
 
-
+programs.getProgramByKeywords = async (req, res) => {
+  const programToFind = req.body.programSearch;
+  const filteredPrograms = await University.aggregate([{
+    $project: {
+      universityName: 1,
+      city: 1,
+      logo: 1,
+      programs: {
+        $filter: {
+          input: "$programs",
+          as: "program",
+          cond: {
+            $gt: [{
+                $indexOfCP: [{
+                  $toLower: "$$program.programName"
+                }, programToFind]
+              },
+              -1
+            ]
+          }
+        }
+      }
+    }
+  }]);
+  // res.send(fPrograms);
+  res.render('pages/program/programs', {
+    programs: filteredPrograms
+  })
+};
 
 export default programs;
